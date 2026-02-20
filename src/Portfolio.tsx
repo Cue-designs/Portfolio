@@ -107,7 +107,7 @@ export default function Portfolio() {
             Open to NYSC placement opportunities, internships, and frontend
             development roles.
           </p>
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 justify-center">
             <div className="flex items-center gap-2">
               <Phone size={18} className="text-blue-400 justify-end" /> <span>+234 706 998 2558</span>
             </div>
