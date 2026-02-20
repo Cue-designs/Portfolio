@@ -100,7 +100,7 @@ export default function Portfolio() {
           </div>
         </section>
 
-        {/* Contact Section */}
+      
         <section className="text-center space-y-6">
           <h2 className="text-3xl font-bold">Let’s Work Together</h2>
           <p className="text-gray-400">
@@ -116,6 +116,10 @@ export default function Portfolio() {
             </div>
           </div>
         </section>
+        <footer className="text-center py-6 text-gray-500">
+          <hr className="text-gray-500"/>
+          {<p>© {new Date().getFullYear()} Emmanuel Cajetan. All rights reserved.</p>}
+        </footer>
       </div>
     </div>
   );
