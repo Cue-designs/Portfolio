@@ -111,7 +111,7 @@ export default function Portfolio() {
             <div className="flex items-center gap-2">
               <Phone size={18} className="text-blue-400 " /> <span>+234 706 998 2558</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 justify-end">
               <Mail size={18} className="text-blue-400 " /> <span>cajemma122@email.com</span>
             </div>
           </div>
