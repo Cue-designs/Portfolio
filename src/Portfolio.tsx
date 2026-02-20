@@ -109,10 +109,10 @@ export default function Portfolio() {
           </p>
           <div className="grid justify-center md:grid-cols-2 gap-8 px-32">
             <div className="flex items-center gap-2">
-              <Phone size={18} className="text-blue-400 justify-end" /> <span>+234 706 998 2558</span>
+              <Phone size={18} className="text-blue-400 " /> <span>+234 706 998 2558</span>
             </div>
             <div className="flex items-center gap-2">
-              <Mail size={18} className="text-blue-400 justify-end" /> <span>cajemma122@email.com</span>
+              <Mail size={18} className="text-blue-400 " /> <span>cajemma122@email.com</span>
             </div>
           </div>
         </section>
