@@ -101,14 +101,14 @@ export default function Portfolio() {
         </section>
 
       
-        <section className="text-center space-y-6">
+        <section className="text-center space-y-3">
           <h2 className="text-3xl font-bold">Let’s Work Together</h2>
           <p className="text-gray-400">
             Open to NYSC placement opportunities, internships, and frontend
             development roles.
           </p>
-          <div className="flex justify-center gap-6">
-            <div className="flex items-center gap-2">
+          <div className="flex justify-center gap-4">
+            <div className="items-center gap-2">
               <Phone size={18} /> <span>+234 706 998 2558</span>
             </div>
             <div className="flex items-center gap-2">
