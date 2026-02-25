@@ -60,7 +60,7 @@ export default function Portfolio() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 text-gray-100 overflow-hidden">
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 right-0 bg-gray-950/70 backdrop-blur-lg z-50 shadow-lg border-b border-gray-800/50">
+      <nav className="fixed top-0 left-0 right-0 bg-gray-950/70 backdrop-blur-lg z-50 shadow-lg border-b border-gray-800/50 lg:py-5">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <a href="#home" className="text-2xl font-extrabold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Emmanuel Cajetan</a>
           <ul className="flex gap-8">
@@ -68,7 +68,7 @@ export default function Portfolio() {
               <li key={item.name}>
                 <motion.a
                   href={item.href}
-                  className="text-gray-300 hover:text-white transition-all hover:glow-text"
+                  className="text-gray-300 text-xl hover:text-white transition-all hover:glow-text"
                   whileHover={{ scale: 1.1, color: "#00FFFF" }}
                   transition={{ duration: 0.3 }}
                 >
