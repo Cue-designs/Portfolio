@@ -1,13 +1,14 @@
-import { motion, useScroll, useTransform,  useAnimation } from "framer-motion";
-import { Github, Mail,  Linkedin, Instagram } from "lucide-react";
-import { SiReact, SiTailwindcss,  SiNextdotjs,  } from "react-icons/si";
+import { motion, useScroll, useTransform, AnimatePresence, useAnimation } from "framer-motion";
+import { Github, Mail, Phone, ExternalLink, Linkedin } from "lucide-react";
+import { SiReact, SiTailwindcss, SiTypescript, SiJavascript, SiHtml5, SiCss3, SiGit, SiNodedotjs, SiNextdotjs, SiRedux, SiJest } from "react-icons/si";
 import { useEffect, useRef } from "react";
 
 export default function Portfolio() {
   const navItems = [
     { name: "Home", href: "#home" },
-    { name: "Projects", href: "#projects" },
     { name: "About", href: "#about" },
+    { name: "Skills", href: "#skills" },
+    { name: "Projects", href: "#projects" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -54,21 +55,18 @@ export default function Portfolio() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-950 via-purple-950 to-indigo-950 text-gray-100 overflow-hidden relative">
-      {/* Background Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:24px_24px] opacity-20 pointer-events-none" />
-
+    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 text-gray-100 overflow-hidden">
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 right-0 bg-indigo-950/50 backdrop-blur-md z-50 shadow-md border-b border-white/10">
+      <nav className="fixed top-0 left-0 right-0 bg-gray-950/70 backdrop-blur-lg z-50 shadow-lg border-b border-gray-800/50">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <a href="#home" className="text-xl font-semibold text-gray-300">Emmanuel Cajetan</a>
-          <ul className="flex gap-6">
+          <a href="#home" className="text-2xl font-extrabold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Emmanuel Cajetan</a>
+          <ul className="flex gap-8">
             {navItems.map((item) => (
               <li key={item.name}>
                 <motion.a
                   href={item.href}
-                  className="text-blue-300 hover:text-blue-100 transition-all"
-                  whileHover={{ scale: 1.1, color: "#60A5FA" }}
+                  className="text-gray-300 hover:text-white transition-all hover:glow-text"
+                  whileHover={{ scale: 1.1, color: "#00FFFF" }}
                   transition={{ duration: 0.3 }}
                 >
                   {item.name}
@@ -76,15 +74,10 @@ export default function Portfolio() {
               </li>
             ))}
           </ul>
-          <img
-            src="/profile-placeholder.png"
-            alt="Emmanuel Cajetan"
-            className="w-10 h-10 rounded-full object-cover border-2 border-blue-500/50"
-          />
         </div>
       </nav>
 
-      <div className="max-w-7xl mx-auto px-6 py-20 space-y-24 pt-24">
+      <div className="max-w-7xl mx-auto px-6 py-20 space-y-32 pt-24">
         {/* Hero Section */}
         <motion.section
           id="home"
@@ -92,235 +85,334 @@ export default function Portfolio() {
           initial="hidden"
           animate="visible"
           variants={containerVariants}
-          className="text-center space-y-6 relative"
+          className="text-center space-y-8 relative"
         >
-          <motion.div style={{ opacity, scale }} className="absolute inset-0 bg-gradient-to-t from-indigo-900/50 to-transparent pointer-events-none" />
+          <motion.div style={{ opacity, scale }} className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent pointer-events-none" />
+          <motion.img
+            src="/profile-placeholder.png"
+            alt="Emmanuel Cajetan"
+            className="w-48 h-48 rounded-full mx-auto object-cover shadow-2xl border-4 border-blue-500/30"
+            variants={itemVariants}
+            whileHover={{ scale: 1.1, rotate: 5, boxShadow: "0 0 40px rgba(0, 255, 255, 0.5)" }}
+          />
           <motion.h1
-            className="text-7xl md:text-9xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-300 drop-shadow-[0_0_20px_rgba(0,255,255,0.7)]"
+            className="text-6xl md:text-8xl font-extrabold tracking-tighter bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent"
             variants={itemVariants}
           >
             Emmanuel Cajetan
           </motion.h1>
           <motion.p
-            className="text-lg md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
+            className="text-xl md:text-3xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
             variants={itemVariants}
           >
-            Nigerian Frontend Developer specializing in React, Tailwind CSS, and modern web technologies.
+            Frontend Developer with expertise in React, Tailwind CSS, TypeScript, and modern web technologies. Dedicated to crafting high-performance, scalable applications with a focus on user experience and clean code architecture.
           </motion.p>
+          <motion.div
+            className="flex justify-center gap-8 pt-6"
+            variants={containerVariants}
+          >
+            <motion.a
+              href="https://github.com/Cue-designs"
+              target="_blank"
+              className="flex items-center gap-2 bg-gray-800/80 hover:bg-gray-700 px-8 py-4 rounded-full shadow-xl transition-all"
+              variants={itemVariants}
+              whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(0, 255, 255, 0.3)" }}
+            >
+              <Github size={24} /> GitHub
+            </motion.a>
+            <motion.a
+              href="mailto:cajemma122@email.com"
+              className="flex items-center gap-2 bg-blue-600/80 hover:bg-blue-500 px-8 py-4 rounded-full shadow-xl transition-all"
+              variants={itemVariants}
+              whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(0, 255, 255, 0.3)" }}
+            >
+              <Mail size={24} /> Contact
+            </motion.a>
+          </motion.div>
         </motion.section>
 
-        {/* Featured Projects Section */}
+        {/* About Section - Grid Layout with Image/Empty Space */}
         <motion.section
-          id="projects"
+          id="about"
           initial="hidden"
           whileInView="visible"
           variants={containerVariants}
           viewport={{ once: true }}
-          className="space-y-8"
+          className="grid md:grid-cols-2 gap-16 items-center"
         >
-          <motion.h2
-            className="text-3xl font-bold text-gray-300"
-            variants={itemVariants}
-          >
-            Featured Projects
-          </motion.h2>
-          <div className="grid md:grid-cols-2 gap-6">
+          <motion.div className="space-y-8" variants={itemVariants}>
+            <motion.h2
+              className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent"
+              variants={itemVariants}
+            >
+              About Me
+            </motion.h2>
+            <motion.p
+              className="text-lg text-gray-300 leading-loose"
+              variants={itemVariants}
+            >
+              As a passionate Frontend Developer, I specialize in building dynamic and responsive web applications. With a strong background in computer science, I excel in translating complex requirements into intuitive user interfaces. My approach emphasizes performance optimization, accessibility, and cross-browser compatibility.
+            </motion.p>
             <motion.div
-              className="bg-indigo-900/30 backdrop-blur-md p-6 rounded-2xl border border-white/10 shadow-lg"
+              className="bg-gray-900/50 p-6 rounded-2xl shadow-2xl border border-gray-800/50"
               variants={itemVariants}
               whileHover={{ scale: 1.02, boxShadow: "0 0 20px rgba(0, 255, 255, 0.2)" }}
             >
-              <img
-                src="/project1-placeholder.png"
-                alt="Project Image"
-                className="w-full h-40 object-cover rounded-xl mb-4"
-              />
-              <p className="text-gray-400">We use mural functional features solely, enhancing user experience in a minimalistic approach.</p>
+              <h3 className="text-2xl font-semibold mb-4 text-cyan-400">Education & Experience</h3>
+              <ul className="list-none space-y-3 text-gray-400">
+                <li className="flex items-start gap-2"><span className="text-blue-400">•</span> Bachelor's Degree in Computer Science from [University Name], graduated with honors.</li>
+                <li className="flex items-start gap-2"><span className="text-blue-400">•</span> 2+ years of professional experience in frontend development, including freelance projects.</li>
+                <li className="flex items-start gap-2"><span className="text-blue-400">•</span> Contributed to open-source repositories with over 500 stars on GitHub.</li>
+                <li className="flex items-start gap-2"><span className="text-blue-400">•</span> Experience in agile environments, collaborating with cross-functional teams.</li>
+              </ul>
             </motion.div>
-            <div className="space-y-6">
-              <motion.div
-                className="bg-indigo-900/30 backdrop-blur-md p-4 rounded-2xl border border-white/10 shadow-lg flex items-center gap-4"
-                variants={itemVariants}
-                whileHover={{ scale: 1.02, boxShadow: "0 0 20px rgba(0, 255, 255, 0.2)" }}
-              >
-                <img
-                  src="/profile-placeholder.png"
-                  alt="Emmanuel Cajetan"
-                  className="w-12 h-12 rounded-full"
-                />
-                <div>
-                  <h3 className="font-semibold text-gray-300">Emmanuel Cajetan</h3>
-                  <p className="text-sm text-gray-500">Nigerian frontend developer.</p>
-                </div>
-              </motion.div>
-              <motion.div
-                className="bg-indigo-900/30 backdrop-blur-md p-4 rounded-2xl border border-white/10 shadow-lg flex items-center gap-4"
-                variants={itemVariants}
-                whileHover={{ scale: 1.02, boxShadow: "0 0 20px rgba(0, 255, 255, 0.2)" }}
-              >
-                <SiReact size={32} className="text-cyan-400" />
-                <div>
-                  <h3 className="font-semibold text-gray-300">Heelt Dojuod</h3>
-                  <p className="text-sm text-gray-500">Liske fagfasfalty eill edqazand in comborata vanctuhd valtim.</p>
-                </div>
-              </motion.div>
-              <motion.div
-                className="bg-indigo-900/30 backdrop-blur-md p-4 rounded-2xl border border-white/10 shadow-lg flex items-center gap-4"
-                variants={itemVariants}
-                whileHover={{ scale: 1.02, boxShadow: "0 0 20px rgba(0, 255, 255, 0.2)" }}
-              >
-                <SiNextdotjs size={32} className="text-cyan-400" />
-                <div>
-                  <h3 className="font-semibold text-gray-300">NewVlatn</h3>
-                  <p className="text-sm text-gray-500">May oul brafjesta a projed ouxit are dent.</p>
-                </div>
-              </motion.div>
-            </div>
-          </div>
+            <motion.div
+              className="bg-gray-900/50 p-6 rounded-2xl shadow-2xl border border-gray-800/50"
+              variants={itemVariants}
+              whileHover={{ scale: 1.02, boxShadow: "0 0 20px rgba(0, 255, 255, 0.2)" }}
+            >
+              <h3 className="text-2xl font-semibold mb-4 text-cyan-400">Interview-Ready Insights</h3>
+              <ul className="list-none space-y-3 text-gray-400">
+                <li className="flex items-start gap-2"><span className="text-blue-400">•</span> Deep knowledge of React ecosystem: Hooks, Context API, Redux for state management.</li>
+                <li className="flex items-start gap-2"><span className="text-blue-400">•</span> Proficient in performance profiling using Chrome DevTools and React Profiler.</li>
+                <li className="flex items-start gap-2"><span className="text-blue-400">•</span> Understanding of web accessibility (WCAG) and SEO best practices.</li>
+                <li className="flex items-start gap-2"><span className="text-blue-400">•</span> Skilled in unit/integration testing with Jest, React Testing Library.</li>
+                <li className="flex items-start gap-2"><span className="text-blue-400">•</span> Familiar with CI/CD pipelines using GitHub Actions and deployment on Vercel/Netlify.</li>
+              </ul>
+            </motion.div>
+          </motion.div>
+          {/* Empty space or placeholder image for futuristic asymmetry */}
+          <motion.div
+            className="hidden md:block relative"
+            variants={itemVariants}
+          >
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-transparent to-gray-950/50 blur-3xl"
+              animate={{ opacity: [0.5, 1, 0.5], scale: [1, 1.05, 1] }}
+              transition={{ duration: 5, repeat: Infinity, repeatType: "reverse" }}
+            />
+            <img
+              src="/about-placeholder.png" // Replace with actual futuristic image or abstract graphic
+              alt="Futuristic Abstract"
+              className="w-full h-full object-cover rounded-3xl opacity-50 shadow-2xl"
+            />
+          </motion.div>
         </motion.section>
 
-        {/* Technologies Section */}
+        {/* Skills Section */}
         <motion.section
           id="skills"
           initial="hidden"
           whileInView="visible"
           variants={containerVariants}
           viewport={{ once: true }}
-          className="space-y-8"
+          className="space-y-12"
         >
           <motion.h2
-            className="text-3xl font-bold text-gray-300"
+            className="text-5xl font-bold text-center bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent"
             variants={itemVariants}
           >
-            Technologies
+            Skills & Tech Stack
           </motion.h2>
-          <div className="flex flex-wrap gap-6 justify-start">
-            <motion.div
-              className="bg-indigo-900/30 backdrop-blur-md px-6 py-3 rounded-full border border-white/10 shadow-lg flex items-center gap-2"
-              variants={iconVariants}
-              whileHover="hover"
-            >
-              <SiReact size={24} className="text-cyan-400" />
-              <span className="text-gray-300">React</span>
-            </motion.div>
-            <motion.div
-              className="bg-indigo-900/30 backdrop-blur-md px-6 py-3 rounded-full border border-white/10 shadow-lg flex items-center gap-2"
-              variants={iconVariants}
-              whileHover="hover"
-            >
-              <SiTailwindcss size={24} className="text-cyan-400" />
-              <span className="text-gray-300">Tailwind CSS</span>
-            </motion.div>
-            <motion.div
-              className="bg-indigo-900/30 backdrop-blur-md px-6 py-3 rounded-full border border-white/10 shadow-lg flex items-center gap-2"
-              variants={iconVariants}
-              whileHover="hover"
-            >
-              <SiNextdotjs size={24} className="text-cyan-400" />
-              <span className="text-gray-300">Next.js</span>
-            </motion.div>
-            {/* Add more as needed */}
-          </div>
+          <motion.div
+            className="flex flex-wrap justify-center gap-10"
+            variants={containerVariants}
+          >
+            <AnimatePresence>
+              <motion.div variants={iconVariants} whileHover="hover"><SiReact size={56} className="text-blue-500" title="React" /></motion.div>
+              <motion.div variants={iconVariants} whileHover="hover"><SiTailwindcss size={56} className="text-cyan-500" title="Tailwind CSS" /></motion.div>
+              <motion.div variants={iconVariants} whileHover="hover"><SiTypescript size={56} className="text-blue-600" title="TypeScript" /></motion.div>
+              <motion.div variants={iconVariants} whileHover="hover"><SiJavascript size={56} className="text-yellow-500" title="JavaScript" /></motion.div>
+              <motion.div variants={iconVariants} whileHover="hover"><SiHtml5 size={56} className="text-orange-600" title="HTML5" /></motion.div>
+              <motion.div variants={iconVariants} whileHover="hover"><SiCss3 size={56} className="text-blue-600" title="CSS3" /></motion.div>
+              <motion.div variants={iconVariants} whileHover="hover"><SiGit size={56} className="text-orange-600" title="Git" /></motion.div>
+              <motion.div variants={iconVariants} whileHover="hover"><SiNodedotjs size={56} className="text-green-600" title="Node.js" /></motion.div>
+              <motion.div variants={iconVariants} whileHover="hover"><SiNextdotjs size={56} className="text-white" title="Next.js" /></motion.div>
+              <motion.div variants={iconVariants} whileHover="hover"><SiRedux size={56} className="text-purple-600" title="Redux" /></motion.div>
+              <motion.div variants={iconVariants} whileHover="hover"><SiJest size={56} className="text-red-600" title="Jest" /></motion.div>
+            </AnimatePresence>
+          </motion.div>
+          <motion.div className="grid md:grid-cols-3 gap-8" variants={containerVariants}>
+            {[
+              {
+                title: "Frontend Development",
+                desc: "Developing robust UIs with React, Next.js, and TypeScript, focusing on component reusability and state management.",
+              },
+              {
+                title: "Responsive & UI/UX Design",
+                desc: "Designing adaptive layouts using Tailwind CSS, ensuring optimal performance on all devices with modern design patterns.",
+              },
+              {
+                title: "DevOps & Testing",
+                desc: "Implementing Git workflows, automated testing with Jest, and deployments for reliable, scalable applications.",
+              },
+            ].map((skill, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(0, 255, 255, 0.25)" }}
+                className="bg-gray-900/50 p-8 rounded-3xl shadow-xl border border-gray-800/50"
+              >
+                <h3 className="text-2xl font-semibold mb-4 text-cyan-400">{skill.title}</h3>
+                <p className="text-gray-300">{skill.desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.section>
 
-        {/* About and Contact Sections */}
-        <div className="grid md:grid-cols-2 gap-6">
-          {/* About Me */}
-          <motion.section
-            id="about"
-            initial="hidden"
-            whileInView="visible"
-            variants={containerVariants}
-            viewport={{ once: true }}
-            className="bg-indigo-900/30 backdrop-blur-md p-6 rounded-2xl border border-white/10 shadow-lg"
+        {/* Projects Section - Grid Layout with Images */}
+        <motion.section
+          id="projects"
+          initial="hidden"
+          whileInView="visible"
+          variants={containerVariants}
+          viewport={{ once: true }}
+          className="space-y-12"
+        >
+          <motion.h2
+            className="text-5xl font-bold text-center bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent"
+            variants={itemVariants}
           >
-            <motion.h2
-              className="text-3xl font-bold text-gray-300 mb-4"
-              variants={itemVariants}
-            >
-              About Me
-            </motion.h2>
-            <motion.p
-              className="text-gray-400"
-              variants={itemVariants}
-            >
-              West agullia in ket to full ritytex aes strcalling company tu line null lpe cublan down Uva U lre blling to en daa earaye cublan. Big ewasl end omlortan or felods.
-            </motion.p>
-          </motion.section>
+            Projects
+          </motion.h2>
+          <motion.div className="grid md:grid-cols-2 gap-16" variants={containerVariants}>
+            {[
+              {
+                name: "Full Stack Blog App",
+                desc: "A feature-rich blog platform with user authentication, real-time comments, and admin dashboard. Integrated frontend with Node.js/Express backend, using MongoDB for data persistence. Demonstrates API consumption, error handling, and secure authentication flows.",
+                link: "https://github.com/Cue-designs",
+                image: "/project1-placeholder.png",
+              },
+              {
+                name: "Responsive E-Commerce Site",
+                desc: "A modern e-commerce platform with product catalogs, shopping cart, and payment integration. Built with Next.js for SSR, optimized for SEO and fast loading. Showcases advanced styling with Tailwind and state management with Redux.",
+                link: "https://github.com/Cue-designs",
+                image: "/project2-placeholder.png",
+              },
+            ].map((project, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                whileHover={{ scale: 1.03, boxShadow: "0 0 40px rgba(0, 255, 255, 0.2)" }}
+                className="bg-gray-900/50 p-8 rounded-3xl shadow-2xl border border-gray-800/50 grid grid-cols-1 md:grid-cols-2 gap-6 items-center"
+              >
+                <motion.img
+                  src={project.image}
+                  alt={project.name}
+                  className="w-full h-64 object-cover rounded-2xl shadow-xl"
+                  initial={{ opacity: 0, x: -50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                />
+                <div className="space-y-4">
+                  <h3 className="text-3xl font-semibold text-cyan-400">{project.name}</h3>
+                  <p className="text-gray-300">{project.desc}</p>
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-all"
+                  >
+                    View Project <ExternalLink size={18} />
+                  </a>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.section>
 
-          {/* Contact */}
-          <motion.section
-            id="contact"
-            initial="hidden"
-            whileInView="visible"
-            variants={containerVariants}
-            viewport={{ once: true }}
-            className="bg-indigo-900/30 backdrop-blur-md p-6 rounded-2xl border border-white/10 shadow-lg"
+        {/* Contact Section */}
+        <motion.section
+          id="contact"
+          initial="hidden"
+          whileInView="visible"
+          variants={containerVariants}
+          viewport={{ once: true }}
+          className="text-center space-y-8 relative"
+        >
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-950/50 blur-3xl pointer-events-none"
+            animate={{ opacity: [0.3, 0.7, 0.3] }}
+            transition={{ duration: 4, repeat: Infinity, repeatType: "reverse" }}
+          />
+          <motion.h2
+            className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent"
+            variants={itemVariants}
           >
-            <motion.h2
-              className="text-3xl font-bold text-gray-300 mb-4"
+            Let’s Collaborate
+          </motion.h2>
+          <motion.p
+            className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
+            variants={itemVariants}
+          >
+            Seeking opportunities in NYSC placements, internships, or full-time frontend roles. Eager to bring innovative solutions and technical expertise to your team.
+          </motion.p>
+          <motion.div
+            className="flex flex-col md:flex-row justify-center gap-8 max-w-3xl mx-auto"
+            variants={containerVariants}
+          >
+            <motion.div
+              className="flex items-center gap-4 bg-gray-900/50 px-8 py-5 rounded-full shadow-2xl border border-gray-800/50 w-full md:w-auto"
               variants={itemVariants}
+              whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(0, 255, 255, 0.3)" }}
             >
-              Contact
-            </motion.h2>
-            <motion.p
-              className="text-gray-400 mb-4"
+              <Phone size={24} className="text-blue-400" />
+              <span>+234 706 998 2558</span>
+            </motion.div>
+            <motion.div
+              className="flex items-center gap-4 bg-gray-900/50 px-8 py-5 rounded-full shadow-2xl border border-gray-800/50 w-full md:w-auto"
               variants={itemVariants}
+              whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(0, 255, 255, 0.3)" }}
             >
-              You arawail yoj agefi alo yut jafetal aject
-            </motion.p>
-            <div className="flex gap-4">
-              <motion.a
-                href="mailto:cajemma122@email.com"
-                className="text-blue-400 hover:text-blue-300"
-                whileHover={{ scale: 1.2 }}
-              >
-                <Mail size={24} />
-              </motion.a>
-              <motion.a
-                href="https://linkedin.com/in/emmanuel-cajetan"
-                className="text-blue-400 hover:text-blue-300"
-                whileHover={{ scale: 1.2 }}
-              >
-                <Linkedin size={24} />
-              </motion.a>
-            </div>
-          </motion.section>
-        </div>
+              <Mail size={24} className="text-blue-400" />
+              <span>cajemma122@email.com</span>
+            </motion.div>
+          </motion.div>
+        </motion.section>
       </div>
 
       {/* Footer */}
-      <footer className="bg-indigo-950/50 backdrop-blur-md py-8 border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-6 flex justify-center gap-8 text-gray-500">
-          <motion.a
-            href="https://github.com/Cue-designs"
-            target="_blank"
-            className="hover:text-gray-300 transition-all"
-            whileHover={{ scale: 1.2, rotate: 360 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Github size={28} />
-          </motion.a>
-          <motion.a
-            href="https://x.com/EmmanuelCa64221"
-            target="_blank"
-            className="hover:text-gray-300 transition-all"
-            whileHover={{ scale: 1.2, rotate: 360 }}
-            transition={{ duration: 0.5 }}
-          >
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-            </svg>
-          </motion.a>
-          <motion.a
-            href="https://instagram.com/emmanuelcajetan"
-            target="_blank"
-            className="hover:text-gray-300 transition-all"
-            whileHover={{ scale: 1.2, rotate: 360 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Instagram size={28} />
-          </motion.a>
+      <footer className="bg-gray-950/70 backdrop-blur-md py-10 border-t border-gray-800/50">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 text-gray-500">
+          <p>© {new Date().getFullYear()} Emmanuel Cajetan. All rights reserved.</p>
+          <div className="flex gap-8">
+            <motion.a
+              href="https://github.com/Cue-designs"
+              target="_blank"
+              className="hover:text-gray-300 transition-all"
+              whileHover={{ scale: 1.2, rotate: 360 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Github size={28} />
+            </motion.a>
+            <motion.a
+              href="https://www.linkedin.com/in/emmanuel-cajetan-81a73a308"
+              target="_blank"
+              className="hover:text-gray-300 transition-all"
+              whileHover={{ scale: 1.2, rotate: 360 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Linkedin size={28} />
+            </motion.a>
+            <motion.a
+              href="https://x.com/EmmanuelCa64221"
+              target="_blank"
+              className="hover:text-gray-300 transition-all"
+              whileHover={{ scale: 1.2, rotate: 360 }}
+              transition={{ duration: 0.5 }}
+            >
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </motion.a>
+            <motion.a
+              href="mailto:cajemma122@email.com"
+              className="hover:text-gray-300 transition-all"
+              whileHover={{ scale: 1.2, rotate: 360 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Mail size={28} />
+            </motion.a>
+          </div>
         </div>
       </footer>
     </div>
