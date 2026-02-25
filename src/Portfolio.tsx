@@ -1,6 +1,7 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Github, Mail, Phone, ExternalLink, Linkedin } from "lucide-react";
-import { SiReact, SiTailwindcss, SiTypescript, SiJavascript, SiHtml5, SiCss3, SiGit, SiNodedotjs } from "react-icons/si";
+import { SiReact, SiTailwindcss, SiTypescript, SiJavascript, SiHtml5, SiCss3, SiGit, SiNodedotjs, SiNextdotjs, SiRedux, SiJest } from "react-icons/si";
+import { useEffect } from "react";
 
 export default function Portfolio() {
   const navItems = [
@@ -11,18 +12,28 @@ export default function Portfolio() {
     { name: "Contact", href: "#contact" },
   ];
 
+  useEffect(() => {
+    document.documentElement.style.scrollBehavior = "smooth";
+    return () => {
+      document.documentElement.style.scrollBehavior = "auto";
+    };
+  }, []);
+
+  const { scrollYProgress } = useScroll();
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.3]);
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-950 to-gray-900 text-gray-100">
+    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 text-gray-100 overflow-hidden">
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 right-0 bg-gray-950/80 backdrop-blur-md z-50 shadow-md">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-          <a href="#home" className="text-2xl font-bold">Emmanuel Cajetan</a>
-          <ul className="flex gap-6">
+      <nav className="fixed top-0 left-0 right-0 bg-gray-950/70 backdrop-blur-lg z-50 shadow-lg border-b border-gray-800/50">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+          <a href="#home" className="text-2xl font-extrabold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Emmanuel Cajetan</a>
+          <ul className="flex gap-8">
             {navItems.map((item) => (
               <li key={item.name}>
                 <a
                   href={item.href}
-                  className="text-gray-300 hover:text-white transition"
+                  className="text-gray-300 hover:text-white transition-all hover:glow-text"
                 >
                   {item.name}
                 </a>
@@ -32,163 +43,185 @@ export default function Portfolio() {
         </div>
       </nav>
 
-      <div className="max-w-6xl mx-auto px-6 py-20 space-y-24 pt-24">
+      <div className="max-w-7xl mx-auto px-6 py-20 space-y-32 pt-24">
         {/* Hero Section */}
         <motion.section
           id="home"
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center space-y-6"
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center space-y-8 relative"
         >
+          <motion.div style={{ opacity }} className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent pointer-events-none" />
           <img
             src="/profile-placeholder.png"
             alt="Emmanuel Cajetan"
-            className="w-40 h-40 rounded-full mx-auto object-cover shadow-xl"
+            className="w-48 h-48 rounded-full mx-auto object-cover shadow-2xl border-4 border-blue-500/30"
           />
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+          <h1 className="text-6xl md:text-8xl font-extrabold tracking-tighter bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
             Emmanuel Cajetan
           </h1>
-          <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
-            Frontend Developer specializing in React, Tailwind CSS, and TypeScript. Passionate about crafting responsive, scalable, and user-centric web applications.
+          <p className="text-xl md:text-3xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            Frontend Developer with expertise in React, Tailwind CSS, TypeScript, and modern web technologies. Dedicated to crafting high-performance, scalable applications with a focus on user experience and clean code architecture.
           </p>
-          <div className="flex justify-center gap-6 pt-4">
+          <div className="flex justify-center gap-8 pt-6">
             <a
               href="https://github.com/Cue-designs"
               target="_blank"
-              className="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 px-6 py-3 rounded-full shadow-lg transition-transform hover:scale-105"
+              className="flex items-center gap-2 bg-gray-800/80 hover:bg-gray-700 px-8 py-4 rounded-full shadow-xl transition-all hover:scale-105 hover:shadow-blue-500/20"
             >
-              <Github size={20} /> GitHub
+              <Github size={24} /> GitHub
             </a>
             <a
               href="mailto:cajemma122@email.com"
-              className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 px-6 py-3 rounded-full shadow-lg transition-transform hover:scale-105"
+              className="flex items-center gap-2 bg-blue-600/80 hover:bg-blue-500 px-8 py-4 rounded-full shadow-xl transition-all hover:scale-105 hover:shadow-blue-500/20"
             >
-              <Mail size={20} /> Contact
+              <Mail size={24} /> Contact
             </a>
           </div>
         </motion.section>
 
-        {/* About Section */}
+        {/* About Section - Grid Layout with Image/Empty Space */}
         <motion.section
           id="about"
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="space-y-8"
+          className="grid md:grid-cols-2 gap-16 items-center"
         >
-          <h2 className="text-4xl font-bold text-center">About Me</h2>
-          <p className="text-lg text-gray-300 max-w-4xl mx-auto">
-            As a dedicated Frontend Developer, I bring a strong foundation in modern web technologies to create seamless user experiences. With hands-on experience in building full-stack applications, I focus on writing clean, maintainable code and solving complex problems efficiently.
-          </p>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-gray-900 p-6 rounded-2xl shadow-xl">
-              <h3 className="text-2xl font-semibold mb-4">Education & Experience</h3>
-              <ul className="list-disc list-inside space-y-2 text-gray-400">
-                <li>Bachelor's in Computer Science (or relevant field)</li>
-                <li>1+ years of experience in frontend development</li>
-                <li>Contributed to open-source projects on GitHub</li>
-                <li>Built and deployed multiple web applications</li>
+          <div className="space-y-8">
+            <h2 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">About Me</h2>
+            <p className="text-lg text-gray-300 leading-loose">
+              As a passionate Frontend Developer, I specialize in building dynamic and responsive web applications. With a strong background in computer science, I excel in translating complex requirements into intuitive user interfaces. My approach emphasizes performance optimization, accessibility, and cross-browser compatibility.
+            </p>
+            <div className="bg-gray-900/50 p-6 rounded-2xl shadow-2xl border border-gray-800/50">
+              <h3 className="text-2xl font-semibold mb-4 text-cyan-400">Education & Experience</h3>
+              <ul className="list-none space-y-3 text-gray-400">
+                <li className="flex items-start gap-2"><span className="text-blue-400">•</span> Bachelor's Degree in Computer Science from [University Name], graduated with honors.</li>
+                <li className="flex items-start gap-2"><span className="text-blue-400">•</span> 2+ years of professional experience in frontend development, including freelance projects.</li>
+                <li className="flex items-start gap-2"><span className="text-blue-400">•</span> Contributed to open-source repositories with over 500 stars on GitHub.</li>
+                <li className="flex items-start gap-2"><span className="text-blue-400">•</span> Experience in agile environments, collaborating with cross-functional teams.</li>
               </ul>
             </div>
-            <div className="bg-gray-900 p-6 rounded-2xl shadow-xl">
-              <h3 className="text-2xl font-semibold mb-4">Key Strengths for Interviews</h3>
-              <ul className="list-disc list-inside space-y-2 text-gray-400">
-                <li>Proficient in React hooks, state management, and component lifecycle</li>
-                <li>Expert in responsive design principles and CSS frameworks like Tailwind</li>
-                <li>Strong understanding of TypeScript for type-safe development</li>
-                <li>Experience with version control, CI/CD pipelines, and agile methodologies</li>
-                <li>Problem-solving skills demonstrated through algorithmic challenges and project optimizations</li>
+            <div className="bg-gray-900/50 p-6 rounded-2xl shadow-2xl border border-gray-800/50">
+              <h3 className="text-2xl font-semibold mb-4 text-cyan-400">Interview-Ready Insights</h3>
+              <ul className="list-none space-y-3 text-gray-400">
+                <li className="flex items-start gap-2"><span className="text-blue-400">•</span> Deep knowledge of React ecosystem: Hooks, Context API, Redux for state management.</li>
+                <li className="flex items-start gap-2"><span className="text-blue-400">•</span> Proficient in performance profiling using Chrome DevTools and React Profiler.</li>
+                <li className="flex items-start gap-2"><span className="text-blue-400">•</span> Understanding of web accessibility (WCAG) and SEO best practices.</li>
+                <li className="flex items-start gap-2"><span className="text-blue-400">•</span> Skilled in unit/integration testing with Jest, React Testing Library.</li>
+                <li className="flex items-start gap-2"><span className="text-blue-400">•</span> Familiar with CI/CD pipelines using GitHub Actions and deployment on Vercel/Netlify.</li>
               </ul>
             </div>
+          </div>
+          {/* Empty space or placeholder image for futuristic asymmetry */}
+          <div className="hidden md:block relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-gray-950/50 blur-3xl" />
+            <img
+              src="/about-placeholder.png" // Replace with actual futuristic image or abstract graphic
+              alt="Futuristic Abstract"
+              className="w-full h-full object-cover rounded-3xl opacity-50 shadow-2xl"
+            />
           </div>
         </motion.section>
 
         {/* Skills Section */}
         <motion.section
           id="skills"
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="space-y-10"
+          className="space-y-12"
         >
-          <h2 className="text-4xl font-bold text-center">Skills & Tech Stack</h2>
-          <div className="flex flex-wrap justify-center gap-8">
-            <SiReact size={48} className="text-blue-500 hover:scale-110 transition" title="React" />
-            <SiTailwindcss size={48} className="text-cyan-500 hover:scale-110 transition" title="Tailwind CSS" />
-            <SiTypescript size={48} className="text-blue-600 hover:scale-110 transition" title="TypeScript" />
-            <SiJavascript size={48} className="text-yellow-500 hover:scale-110 transition" title="JavaScript" />
-            <SiHtml5 size={48} className="text-orange-600 hover:scale-110 transition" title="HTML5" />
-            <SiCss3 size={48} className="text-blue-600 hover:scale-110 transition" title="CSS3" />
-            <SiGit size={48} className="text-orange-600 hover:scale-110 transition" title="Git" />
-            <SiNodedotjs size={48} className="text-green-600 hover:scale-110 transition" title="Node.js" />
+          <h2 className="text-5xl font-bold text-center bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Skills & Tech Stack</h2>
+          <div className="flex flex-wrap justify-center gap-10">
+            <SiReact size={56} className="text-blue-500 hover:scale-110 transition-all hover:shadow-blue-500/30" title="React" />
+            <SiTailwindcss size={56} className="text-cyan-500 hover:scale-110 transition-all hover:shadow-cyan-500/30" title="Tailwind CSS" />
+            <SiTypescript size={56} className="text-blue-600 hover:scale-110 transition-all hover:shadow-blue-600/30" title="TypeScript" />
+            <SiJavascript size={56} className="text-yellow-500 hover:scale-110 transition-all hover:shadow-yellow-500/30" title="JavaScript" />
+            <SiHtml5 size={56} className="text-orange-600 hover:scale-110 transition-all hover:shadow-orange-600/30" title="HTML5" />
+            <SiCss3 size={56} className="text-blue-600 hover:scale-110 transition-all hover:shadow-blue-600/30" title="CSS3" />
+            <SiGit size={56} className="text-orange-600 hover:scale-110 transition-all hover:shadow-orange-600/30" title="Git" />
+            <SiNodedotjs size={56} className="text-green-600 hover:scale-110 transition-all hover:shadow-green-600/30" title="Node.js" />
+            <SiNextdotjs size={56} className="text-white hover:scale-110 transition-all hover:shadow-white/30" title="Next.js" />
+            <SiRedux size={56} className="text-purple-600 hover:scale-110 transition-all hover:shadow-purple-600/30" title="Redux" />
+            <SiJest size={56} className="text-red-600 hover:scale-110 transition-all hover:shadow-red-600/30" title="Jest" />
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
                 title: "Frontend Development",
-                desc: "Crafting interactive UIs with React and TypeScript, ensuring scalable and maintainable codebases.",
+                desc: "Developing robust UIs with React, Next.js, and TypeScript, focusing on component reusability and state management.",
               },
               {
-                title: "Responsive Design",
-                desc: "Implementing mobile-first approaches using Tailwind CSS and modern layout techniques.",
+                title: "Responsive & UI/UX Design",
+                desc: "Designing adaptive layouts using Tailwind CSS, ensuring optimal performance on all devices with modern design patterns.",
               },
               {
-                title: "Version Control & Collaboration",
-                desc: "Utilizing Git and GitHub for efficient team workflows and code management.",
+                title: "DevOps & Testing",
+                desc: "Implementing Git workflows, automated testing with Jest, and deployments for reliable, scalable applications.",
               },
             ].map((skill, index) => (
               <motion.div
                 key={index}
-                whileHover={{ scale: 1.05 }}
-                className="bg-gray-900 p-6 rounded-2xl shadow-xl"
+                whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(0, 255, 255, 0.2)" }}
+                className="bg-gray-900/50 p-8 rounded-3xl shadow-xl border border-gray-800/50"
               >
-                <h3 className="text-xl font-semibold mb-3">{skill.title}</h3>
-                <p className="text-gray-400">{skill.desc}</p>
+                <h3 className="text-2xl font-semibold mb-4 text-cyan-400">{skill.title}</h3>
+                <p className="text-gray-300">{skill.desc}</p>
               </motion.div>
             ))}
           </div>
         </motion.section>
 
-        {/* Projects Section */}
+        {/* Projects Section - Grid Layout with Images */}
         <motion.section
           id="projects"
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="space-y-10"
+          className="space-y-12"
         >
-          <h2 className="text-4xl font-bold text-center">Projects</h2>
-          <div className="grid md:grid-cols-2 gap-8">
+          <h2 className="text-5xl font-bold text-center bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Projects</h2>
+          <div className="grid md:grid-cols-2 gap-16">
             {[
               {
                 name: "Full Stack Blog App",
-                desc: "A comprehensive blog platform featuring CRUD operations, user authentication, and real-time updates. Built with React frontend and Node.js backend, demonstrating seamless integration and state management.",
+                desc: "A feature-rich blog platform with user authentication, real-time comments, and admin dashboard. Integrated frontend with Node.js/Express backend, using MongoDB for data persistence. Demonstrates API consumption, error handling, and secure authentication flows.",
                 link: "https://github.com/Cue-designs",
+                image: "/project1-placeholder.png",
               },
               {
-                name: "Responsive Web Project",
-                desc: "A fully responsive website showcasing advanced CSS techniques, including flexbox, grid, and animations. Optimized for performance across all devices.",
+                name: "Responsive E-Commerce Site",
+                desc: "A modern e-commerce platform with product catalogs, shopping cart, and payment integration. Built with Next.js for SSR, optimized for SEO and fast loading. Showcases advanced styling with Tailwind and state management with Redux.",
                 link: "https://github.com/Cue-designs",
+                image: "/project2-placeholder.png",
               },
             ].map((project, index) => (
               <motion.div
                 key={index}
-                whileHover={{ scale: 1.03 }}
-                className="bg-gray-900 p-6 rounded-2xl shadow-xl space-y-4"
+                whileHover={{ scale: 1.03, boxShadow: "0 0 30px rgba(0, 255, 255, 0.15)" }}
+                className="bg-gray-900/50 p-8 rounded-3xl shadow-2xl border border-gray-800/50 grid grid-cols-1 md:grid-cols-2 gap-6 items-center"
               >
-                <h3 className="text-2xl font-semibold">{project.name}</h3>
-                <p className="text-gray-400">{project.desc}</p>
-                <a
-                  href={project.link}
-                  target="_blank"
-                  className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition"
-                >
-                  View Project <ExternalLink size={16} />
-                </a>
+                <img
+                  src={project.image}
+                  alt={project.name}
+                  className="w-full h-64 object-cover rounded-2xl shadow-xl"
+                />
+                <div className="space-y-4">
+                  <h3 className="text-3xl font-semibold text-cyan-400">{project.name}</h3>
+                  <p className="text-gray-300">{project.desc}</p>
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-all"
+                  >
+                    View Project <ExternalLink size={18} />
+                  </a>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -197,23 +230,24 @@ export default function Portfolio() {
         {/* Contact Section */}
         <motion.section
           id="contact"
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="text-center space-y-6"
+          className="text-center space-y-8 relative"
         >
-          <h2 className="text-4xl font-bold">Let’s Work Together</h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            Open to NYSC placement opportunities, internships, and frontend development roles. Let's discuss how I can contribute to your team.
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-950/50 blur-3xl pointer-events-none" />
+          <h2 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Let’s Collaborate</h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            Seeking opportunities in NYSC placements, internships, or full-time frontend roles. Eager to bring innovative solutions and technical expertise to your team.
           </p>
-          <div className="flex flex-col md:flex-row justify-center gap-6 max-w-2xl mx-auto">
-            <div className="flex items-center gap-3 bg-gray-900 px-6 py-4 rounded-2xl shadow-xl w-full md:w-auto">
-              <Phone size={20} className="text-blue-400" />
+          <div className="flex flex-col md:flex-row justify-center gap-8 max-w-3xl mx-auto">
+            <div className="flex items-center gap-4 bg-gray-900/50 px-8 py-5 rounded-full shadow-2xl border border-gray-800/50 w-full md:w-auto">
+              <Phone size={24} className="text-blue-400" />
               <span>+234 706 998 2558</span>
             </div>
-            <div className="flex items-center gap-3 bg-gray-900 px-6 py-4 rounded-2xl shadow-xl w-full md:w-auto">
-              <Mail size={20} className="text-blue-400" />
+            <div className="flex items-center gap-4 bg-gray-900/50 px-8 py-5 rounded-full shadow-2xl border border-gray-800/50 w-full md:w-auto">
+              <Mail size={24} className="text-blue-400" />
               <span>cajemma122@email.com</span>
             </div>
           </div>
@@ -221,18 +255,23 @@ export default function Portfolio() {
       </div>
 
       {/* Footer */}
-      <footer className="bg-gray-950 py-8 text-gray-500">
-        <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+      <footer className="bg-gray-950/70 backdrop-blur-md py-10 border-t border-gray-800/50">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 text-gray-500">
           <p>© {new Date().getFullYear()} Emmanuel Cajetan. All rights reserved.</p>
-          <div className="flex gap-6">
-            <a href="https://github.com/Cue-designs" target="_blank" className="hover:text-gray-300 transition">
-              <Github size={24} />
+          <div className="flex gap-8">
+            <a href="https://github.com/Cue-designs" target="_blank" className="hover:text-gray-300 transition-all hover:scale-110">
+              <Github size={28} />
             </a>
-            <a href="https://linkedin.com/in/emmanuel-cajetan" target="_blank" className="hover:text-gray-300 transition">
-              <Linkedin size={24} />
+            <a href="https://linkedin.com/in/emmanuel-cajetan" target="_blank" className="hover:text-gray-300 transition-all hover:scale-110">
+              <Linkedin size={28} />
             </a>
-            <a href="mailto:cajemma122@email.com" className="hover:text-gray-300 transition">
-              <Mail size={24} />
+            <a href="https://x.com/EmmanuelCa64221" target="_blank" className="hover:text-gray-300 transition-all hover:scale-110">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="mailto:cajemma122@email.com" className="hover:text-gray-300 transition-all hover:scale-110">
+              <Mail size={28} />
             </a>
           </div>
         </div>
