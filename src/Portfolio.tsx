@@ -4,6 +4,8 @@ import { SiReact, SiTailwindcss, SiTypescript, SiJavascript, SiHtml5, SiCss3, Si
 import { useEffect, useRef } from "react";
 import imageweb from "./assets/imageweb.jpg";
 import profile from "./assets/profile.jpg";
+import Blog from "./assets/Blog.png";
+import commerce from "./assets/commerce.png";
 export default function Portfolio() {
   const navItems = [
     { name: "Home", href: "#home" },
@@ -52,7 +54,7 @@ export default function Portfolio() {
   const iconVariants = {
     hidden: { opacity: 0, scale: 0 },
     visible: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: "backOut" } },
-    hover: { scale: 1.2, rotate: 360, transition: { duration: 0.8, ease: "easeInOut" } },
+    hover: { scale: 1.2, transition: { duration: 0.8, ease: "easeInOut" } },
   };
 
   return (
@@ -94,7 +96,7 @@ export default function Portfolio() {
             alt="Emmanuel Cajetan"
             className="w-48 h-48 rounded-full mx-auto object-cover shadow-2xl border-4 border-blue-500/30"
             variants={itemVariants}
-            whileHover={{ scale: 1.1, rotate: 5, boxShadow: "0 0 40px rgba(0, 255, 255, 0.5)" }}
+            whileHover={{ scale: 1.1, boxShadow: "0 0 40px rgba(0, 255, 255, 0.5)" }}
           />
           <motion.h1
             className="text-6xl md:text-8xl font-extrabold tracking-tighter bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent"
@@ -109,13 +111,13 @@ export default function Portfolio() {
             Frontend Developer with expertise in React, Tailwind CSS, TypeScript, and modern web technologies. Dedicated to crafting high-performance, scalable applications with a focus on user experience and clean code architecture.
           </motion.p>
           <motion.div
-            className="flex justify-center gap-8 pt-6"
+            className="flex justify-center gap-8 pt-6 "
             variants={containerVariants}
           >
             <motion.a
               href="https://github.com/Cue-designs"
               target="_blank"
-              className="flex items-center gap-2 bg-gray-800/80 hover:bg-gray-700 px-8 py-4 rounded-full shadow-xl transition-all"
+              className="flex items-center gap-2 bg-gray-800/80 hover:bg-gray-700 px-8 py-4 rounded-full shadow-xl transition-all z-50"
               variants={itemVariants}
               whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(0, 255, 255, 0.3)" }}
             >
@@ -123,7 +125,7 @@ export default function Portfolio() {
             </motion.a>
             <motion.a
               href="mailto:cajemma122@email.com"
-              className="flex items-center gap-2 bg-blue-600/80 hover:bg-blue-500 px-8 py-4 rounded-full shadow-xl transition-all"
+              className="flex items-center gap-2 bg-blue-600/80 hover:bg-blue-500 px-8 py-4 rounded-full shadow-xl transition-all z-50"
               variants={itemVariants}
               whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(0, 255, 255, 0.3)" }}
             >
@@ -279,13 +281,13 @@ export default function Portfolio() {
                 name: "Full Stack Blog App",
                 desc: "A feature-rich blog platform with user authentication, real-time comments, and admin dashboard. Integrated frontend with Node.js/Express backend, using MongoDB for data persistence. Demonstrates API consumption, error handling, and secure authentication flows.",
                 link: "https://github.com/Cue-designs",
-                image: "/project1-placeholder.png",
+                image: Blog,
               },
               {
                 name: "Responsive E-Commerce Site",
                 desc: "A modern e-commerce platform with product catalogs, shopping cart, and payment integration. Built with Next.js for SSR, optimized for SEO and fast loading. Showcases advanced styling with Tailwind and state management with Redux.",
                 link: "https://github.com/Cue-designs",
-                image: "/project2-placeholder.png",
+                image: commerce,
               },
             ].map((project, index) => (
               <motion.div
@@ -377,7 +379,7 @@ export default function Portfolio() {
               href="https://github.com/Cue-designs"
               target="_blank"
               className="hover:text-gray-300 transition-all"
-              whileHover={{ scale: 1.2, rotate: 360 }}
+              whileHover={{ scale: 1.2 }}
               transition={{ duration: 0.5 }}
             >
               <Github size={28} />
@@ -386,7 +388,7 @@ export default function Portfolio() {
               href="https://www.linkedin.com/in/emmanuel-cajetan-81a73a308"
               target="_blank"
               className="hover:text-gray-300 transition-all"
-              whileHover={{ scale: 1.2, rotate: 360 }}
+              whileHover={{ scale: 1.2 }}
               transition={{ duration: 0.5 }}
             >
               <Linkedin size={28} />
@@ -395,7 +397,7 @@ export default function Portfolio() {
               href="https://x.com/EmmanuelCa64221"
               target="_blank"
               className="hover:text-gray-300 transition-all"
-              whileHover={{ scale: 1.2, rotate: 360 }}
+              whileHover={{ scale: 1.2 }}
               transition={{ duration: 0.5 }}
             >
               <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
@@ -405,7 +407,7 @@ export default function Portfolio() {
             <motion.a
               href="mailto:cajemma122@email.com"
               className="hover:text-gray-300 transition-all"
-              whileHover={{ scale: 1.2, rotate: 360 }}
+              whileHover={{ scale: 1.2 }}
               transition={{ duration: 0.5 }}
             >
               <Mail size={28} />
