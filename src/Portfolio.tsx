@@ -1,8 +1,9 @@
 import { motion, useScroll, useTransform, AnimatePresence, useAnimation } from "framer-motion";
 import { Github, Mail, Phone, ExternalLink, Linkedin } from "lucide-react";
-import { SiReact, SiTailwindcss, SiTypescript, SiJavascript, SiHtml5, SiCss3, SiGit, SiNodedotjs, SiNextdotjs, SiRedux, SiJest } from "react-icons/si";
+import { SiReact, SiTailwindcss, SiTypescript, SiJavascript, SiHtml5, SiCss3, SiGit } from "react-icons/si";
 import { useEffect, useRef } from "react";
-
+import imageweb from "./assets/imageweb.jpg";
+import profile from "./assets/profile.jpg";
 export default function Portfolio() {
   const navItems = [
     { name: "Home", href: "#home" },
@@ -89,7 +90,7 @@ export default function Portfolio() {
         >
           <motion.div style={{ opacity, scale }} className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent pointer-events-none" />
           <motion.img
-            src="/profile-placeholder.png"
+            src={profile}
             alt="Emmanuel Cajetan"
             className="w-48 h-48 rounded-full mx-auto object-cover shadow-2xl border-4 border-blue-500/30"
             variants={itemVariants}
@@ -192,7 +193,7 @@ export default function Portfolio() {
               transition={{ duration: 5, repeat: Infinity, repeatType: "reverse" }}
             />
             <img
-              src="/about-placeholder.png" // Replace with actual futuristic image or abstract graphic
+              src={imageweb}// Replace with actual futuristic image or abstract graphic
               alt="Futuristic Abstract"
               className="w-full h-full object-cover rounded-3xl opacity-50 shadow-2xl"
             />
@@ -226,10 +227,7 @@ export default function Portfolio() {
               <motion.div variants={iconVariants} whileHover="hover"><SiHtml5 size={56} className="text-orange-600" title="HTML5" /></motion.div>
               <motion.div variants={iconVariants} whileHover="hover"><SiCss3 size={56} className="text-blue-600" title="CSS3" /></motion.div>
               <motion.div variants={iconVariants} whileHover="hover"><SiGit size={56} className="text-orange-600" title="Git" /></motion.div>
-              <motion.div variants={iconVariants} whileHover="hover"><SiNodedotjs size={56} className="text-green-600" title="Node.js" /></motion.div>
-              <motion.div variants={iconVariants} whileHover="hover"><SiNextdotjs size={56} className="text-white" title="Next.js" /></motion.div>
-              <motion.div variants={iconVariants} whileHover="hover"><SiRedux size={56} className="text-purple-600" title="Redux" /></motion.div>
-              <motion.div variants={iconVariants} whileHover="hover"><SiJest size={56} className="text-red-600" title="Jest" /></motion.div>
+             
             </AnimatePresence>
           </motion.div>
           <motion.div className="grid md:grid-cols-3 gap-8" variants={containerVariants}>
