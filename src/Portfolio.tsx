@@ -346,6 +346,12 @@ export default function Portfolio() {
           >
             Seeking opportunities in NYSC placements, internships, or full-time frontend roles. Eager to bring innovative solutions and technical expertise to your team.
           </motion.p>
+          <motion.p
+            className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
+            variants={itemVariants}
+          >
+            Feel free to reach out for collaborations, freelance projects, or just to connect. I’m always open to discussing new ideas and opportunities.
+          </motion.p>
           <motion.div
             className="flex flex-col md:flex-row justify-center gap-8 max-w-3xl mx-auto"
             variants={containerVariants}
