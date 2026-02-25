@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Github, Mail, Phone, ExternalLink } from "lucide-react";
+import { SiReact, SiTailwindcss, SiTypescript } from "react-icons/si";
 
 export default function Portfolio() {
   return (
@@ -12,6 +13,11 @@ export default function Portfolio() {
           transition={{ duration: 0.6 }}
           className="text-center space-y-6"
         >
+          <img
+            src="/profile-placeholder.png"
+            alt="Emmanuel Cajetan"
+            className="w-32 h-32 rounded-full mx-auto object-cover"
+          />
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
             Emmanuel Cajetan
           </h1>
@@ -20,7 +26,11 @@ export default function Portfolio() {
             TypeScript. Passionate about building responsive, scalable, and
             user-friendly web applications.
           </p>
-
+          <div className="flex justify-center gap-6">
+            <SiReact size={32} className="text-blue-500" />
+            <SiTailwindcss size={32} className="text-cyan-500" />
+            <SiTypescript size={32} className="text-blue-600" />
+          </div>
           <div className="flex justify-center gap-6 pt-4">
             <a
               href="https://github.com/Cue-designs"
