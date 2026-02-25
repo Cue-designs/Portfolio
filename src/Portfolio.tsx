@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import imageweb from "./assets/imageweb.jpg";
 import profile from "./assets/profile.jpg";
 import Blog from "./assets/Blog.png";
+import devbyte from "./assets/devbyte.png";
 import commerce from "./assets/commerce.png";
 export default function Portfolio() {
   const navItems = [
@@ -285,9 +286,9 @@ export default function Portfolio() {
               },
               {
                 name: "Dev Byte Community Project",
-                desc: "A feature-rich blog platform made by the community for the community. This project was a collaborative effort where I contributed to the frontend development using React and Tailwind CSS. It showcases my ability to work in a team, implement responsive design, and create an engaging user experience. The project serves as a testament to my commitment to open-source contributions and community-driven development.",
+                desc: "A feature-rich blog platform made by the community for the community. This project was a collaborative effort where I contributed to the frontend development using React and Tailwind CSS. The project serves as a testament to my commitment to open-source contributions and community-driven development.",
                 link: "https://github.com/Cue-designs",
-                image: Blog,
+                image: devbyte,
               },
               {
                 name: "Responsive E-Commerce Site",
