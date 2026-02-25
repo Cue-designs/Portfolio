@@ -163,9 +163,9 @@ export default function Portfolio() {
             >
               <h3 className="text-2xl font-semibold mb-4 text-cyan-400">Education & Experience</h3>
               <ul className="list-none space-y-3 text-gray-400">
-                <li className="flex items-start gap-2"><span className="text-blue-400">•</span> Bachelor's Degree in Computer Science from [University Name], graduated with honors.</li>
+                <li className="flex items-start gap-2"><span className="text-blue-400">•</span> Bachelor's Degree in Computer Science from I-fatoss University, graduated with honors.</li>
                 <li className="flex items-start gap-2"><span className="text-blue-400">•</span> 2+ years of professional experience in frontend development, including freelance projects.</li>
-                <li className="flex items-start gap-2"><span className="text-blue-400">•</span> Contributed to open-source repositories with over 500 stars on GitHub.</li>
+                <li className="flex items-start gap-2"><span className="text-blue-400">•</span> Contributed to open-source repositories  on GitHub.</li>
                 <li className="flex items-start gap-2"><span className="text-blue-400">•</span> Experience in agile environments, collaborating with cross-functional teams.</li>
               </ul>
             </motion.div>
@@ -176,10 +176,10 @@ export default function Portfolio() {
             >
               <h3 className="text-2xl font-semibold mb-4 text-cyan-400">Interview-Ready Insights</h3>
               <ul className="list-none space-y-3 text-gray-400">
-                <li className="flex items-start gap-2"><span className="text-blue-400">•</span> Deep knowledge of React ecosystem: Hooks, Context API, Redux for state management.</li>
-                <li className="flex items-start gap-2"><span className="text-blue-400">•</span> Proficient in performance profiling using Chrome DevTools and React Profiler.</li>
-                <li className="flex items-start gap-2"><span className="text-blue-400">•</span> Understanding of web accessibility (WCAG) and SEO best practices.</li>
-                <li className="flex items-start gap-2"><span className="text-blue-400">•</span> Skilled in unit/integration testing with Jest, React Testing Library.</li>
+                <li className="flex items-start gap-2"><span className="text-blue-400">•</span> Deep knowledge of React ecosystem: Hooks, Context API, and also state management.</li>
+                <li className="flex items-start gap-2"><span className="text-blue-400">•</span> Proficient in performance profiling using Chrome DevTools .</li>
+                <li className="flex items-start gap-2"><span className="text-blue-400">•</span> Understanding of web accessibility  and SEO best practices.</li>
+                <li className="flex items-start gap-2"><span className="text-blue-400">•</span> Skilled in unit/integration testing with, React Testing Library.</li>
                 <li className="flex items-start gap-2"><span className="text-blue-400">•</span> Familiar with CI/CD pipelines using GitHub Actions and deployment on Vercel/Netlify.</li>
               </ul>
             </motion.div>
@@ -236,15 +236,15 @@ export default function Portfolio() {
             {[
               {
                 title: "Frontend Development",
-                desc: "Developing robust UIs with React, Next.js, and TypeScript, focusing on component reusability and state management.",
+                desc: "Developing robust UIs with React, and TypeScript, focusing on component reusability and state management.",
               },
               {
                 title: "Responsive & UI/UX Design",
                 desc: "Designing adaptive layouts using Tailwind CSS, ensuring optimal performance on all devices with modern design patterns.",
               },
               {
-                title: "DevOps & Testing",
-                desc: "Implementing Git workflows, automated testing with Jest, and deployments for reliable, scalable applications.",
+                title: "Testing & Deployment",
+                desc: "Implementing Git workflows, and deployments for reliable, scalable applications.",
               },
             ].map((skill, index) => (
               <motion.div
@@ -285,7 +285,7 @@ export default function Portfolio() {
               },
               {
                 name: "Responsive E-Commerce Site",
-                desc: "A modern e-commerce platform with product catalogs, shopping cart, and payment integration. Built with Next.js for SSR, optimized for SEO and fast loading. Showcases advanced styling with Tailwind and state management with Redux.",
+                desc: "A modern e-commerce platform with product catalogs. This was my First project using HTML and CSS. Just a site with my humble beginnings. Although it lacks interactivity, it showcases my early passion for web design and development. It serves as a nostalgic reminder of my journey and growth in the field.",
                 link: "https://github.com/Cue-designs",
                 image: commerce,
               },
