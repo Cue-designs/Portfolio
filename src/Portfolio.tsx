@@ -284,6 +284,12 @@ export default function Portfolio() {
                 image: Blog,
               },
               {
+                name: "Dev Byte Community Project",
+                desc: "A feature-rich blog platform made by the community for the community. This project was a collaborative effort where I contributed to the frontend development using React and Tailwind CSS. It showcases my ability to work in a team, implement responsive design, and create an engaging user experience. The project serves as a testament to my commitment to open-source contributions and community-driven development.",
+                link: "https://github.com/Cue-designs",
+                image: Blog,
+              },
+              {
                 name: "Responsive E-Commerce Site",
                 desc: "A modern e-commerce platform with product catalogs. This was my First project using HTML and CSS. Just a site with my humble beginnings. Although it lacks interactivity, it showcases my early passion for web design and development. It serves as a nostalgic reminder of my journey and growth in the field.",
                 link: "https://github.com/Cue-designs",
