@@ -63,7 +63,9 @@ export default function Portfolio() {
       {/* Navbar */}
       <nav className="fixed top-0 left-0 right-0 bg-gray-950/70 backdrop-blur-lg z-50 shadow-lg border-b border-gray-800/50 lg:py-5">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <a href="#home" className="text-2xl font-extrabold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Emmanuel Cajetan</a>
+      
+         { <a href="#home" className=" text-2xl font-extrabold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent ">Emmanuel Cajetan</a>}
+        
           <ul className="flex gap-8">
             {navItems.map((item) => (
               <li key={item.name}>
@@ -112,26 +114,28 @@ export default function Portfolio() {
             Frontend Developer with expertise in React, Tailwind CSS, TypeScript, and modern web technologies. Dedicated to crafting high-performance, scalable applications with a focus on user experience and clean code architecture.
           </motion.p>
           <motion.div
-            className="flex justify-center gap-8 pt-6 "
+            className="flex justify-center gap-8 py-4 px-4 lg:px-8"
             variants={containerVariants}
           >
-            <motion.a
-              href="https://github.com/Cue-designs"
-              target="_blank"
-              className="flex items-center gap-2 bg-gray-800/80 hover:bg-gray-700 px-8 py-4 rounded-full shadow-xl transition-all z-50"
-              variants={itemVariants}
-              whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(0, 255, 255, 0.3)" }}
-            >
-              <Github size={24} /> GitHub
-            </motion.a>
-            <motion.a
-              href="mailto:cajemma122@email.com"
-              className="flex items-center gap-2 bg-blue-600/80 hover:bg-blue-500 px-8 py-4 rounded-full shadow-xl transition-all z-50"
-              variants={itemVariants}
-              whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(0, 255, 255, 0.3)" }}
-            >
-              <Mail size={24} /> Contact
-            </motion.a>
+            
+              <motion.a
+                href="https://github.com/Cue-designs"
+                target="_blank"
+                className="flex items-center gap-2 bg-gray-800/80 hover:bg-gray-700 px-4 py-2 rounded-full shadow-xl transition-all z-50 lg:px-10 py-5 text-xl"
+                variants={itemVariants}
+                whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(0, 255, 255, 0.3)" }}
+              >
+                <Github size={24} /> GitHub
+              </motion.a>
+              <motion.a
+                href="mailto:cajemma122@email.com"
+                className="flex items-center gap-2 bg-blue-600/80 hover:bg-blue-500 px-4 py-2 rounded-full shadow-xl transition-all z-50 lg:px-10 py-5 text-xl"
+                variants={itemVariants}
+                whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(0, 255, 255, 0.3)" }}
+              >
+                <Mail size={24} /> Contact
+              </motion.a>
+            
           </motion.div>
         </motion.section>
 
