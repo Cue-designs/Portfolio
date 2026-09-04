@@ -38,6 +38,7 @@ export default function About() {
         <h2 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
           About Me
         </h2>
+
         <p className="text-lg text-gray-300 leading-loose">
           As a passionate Frontend Developer, I specialize in building dynamic
           and responsive web applications. With a strong background in computer

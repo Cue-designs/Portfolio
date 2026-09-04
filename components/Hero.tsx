@@ -1,7 +1,17 @@
 import { Github, Mail } from "lucide-react";
 import profile from "../public/profile.jpg";
-
+import TextType from "./TextType";
 export default function Hero() {
+  const texts = {
+    content: [
+      "Frontend Developer with expertise in React,",
+      "Dedicated to crafting high-performance,",
+      "Scalable applications with a focus on user experience and clean code.",
+      "Good with Tailwind CSS, TypeScript and modern web technologies.",
+    ],
+    style:
+      "text-xl md:text-3xl text-gray-300 max-w-4xl mx-auto leading-relaxed",
+  };
   return (
     <section id="home" className="text-center space-y-8 relative">
       <img
@@ -12,12 +22,17 @@ export default function Hero() {
       <h1 className="text-6xl md:text-8xl font-extrabold tracking-tighter bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
         Emmanuel Cajetan
       </h1>
-      <p className="text-xl md:text-3xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-        Frontend Developer with expertise in React, Tailwind CSS, TypeScript,
-        and modern web technologies. Dedicated to crafting high-performance,
-        scalable applications with a focus on user experience and clean code
-        architecture.
-      </p>
+      <TextType
+        text={texts.content}
+        typingSpeed={75}
+        pauseDuration={1500}
+        showCursor
+        cursorCharacter="_"
+        deletingSpeed={50}
+        cursorBlinkDuration={0.5}
+        className={texts.style}
+      />
+
       <div className="flex justify-center gap-8 py-4 px-4 lg:px-8">
         <a
           href="https://github.com/Cue-designs"
