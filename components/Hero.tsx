@@ -1,7 +1,12 @@
-import { Github, Mail } from "lucide-react";
-import profile from "../public/profile.jpg";
+"use client";
+
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
 import TextType from "./TextType";
+
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+
   const texts = {
     content: [
       "Frontend Developer with expertise in React,",
@@ -10,44 +15,78 @@ export default function Hero() {
       "Good with Tailwind CSS, TypeScript and modern web technologies.",
     ],
     style:
-      "text-xl md:text-3xl text-gray-300 max-w-4xl mx-auto leading-relaxed",
+      "mx-auto max-w-3xl text-lg font-light leading-relaxed text-muted md:text-2xl",
   };
-  return (
-    <section id="home" className="text-center space-y-8 relative">
-      <img
-        src={profile.src}
-        alt="Emmanuel Cajetan"
-        className="w-48 h-48 rounded-full mx-auto object-cover shadow-2xl border-4 border-blue-500/30"
-      />
-      <h1 className="text-6xl md:text-8xl font-extrabold tracking-tighter bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
-        Emmanuel Cajetan
-      </h1>
-      <TextType
-        text={texts.content}
-        typingSpeed={75}
-        pauseDuration={1500}
-        showCursor
-        cursorCharacter="_"
-        deletingSpeed={50}
-        cursorBlinkDuration={0.5}
-        className={texts.style}
-      />
 
-      <div className="flex justify-center gap-8 py-4 px-4 lg:px-8">
-        <a
-          href="https://github.com/Cue-designs"
-          target="_blank"
-          rel="noreferrer"
-          className="flex items-center gap-2 bg-gray-800/80 hover:bg-gray-700 px-4 py-5 rounded-full shadow-xl z-50 lg:px-10 text-xl"
-        >
-          <Github size={24} /> GitHub
-        </a>
-        <a
-          href="mailto:cajemma122@email.com"
-          className="flex items-center gap-2 bg-blue-600/80 hover:bg-blue-500 px-4 py-5 rounded-full shadow-xl z-50 lg:px-10 text-xl"
-        >
-          <Mail size={24} /> Contact
-        </a>
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(".hero-elem", {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.12,
+        ease: "power3.out",
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  const handleHover = (target: HTMLElement, scale: number) => {
+    gsap.to(target, { scale, duration: 0.25, ease: "power2.out" });
+  };
+
+  const handleHoverOut = (target: HTMLElement) => {
+    gsap.to(target, { scale: 1, duration: 0.25, ease: "power2.out" });
+  };
+
+  return (
+    <section
+      ref={sectionRef}
+      id="home"
+      className="relative flex min-h-[calc(100vh-6rem)] w-full items-center overflow-hidden border-b border-border/40 px-4 py-16 text-paper antialiased"
+    >
+      <div className="container relative z-10 mx-auto grid w-full grid-cols-1 items-center gap-12 lg:grid-cols-12">
+        <div className="flex flex-col items-center space-y-8 text-center lg:col-span-8 lg:items-start lg:text-left">
+          <p className="hero-elem text-reveal text-sm font-bold uppercase tracking-[0.25em] text-accent">
+            Frontend developer / creative technologist
+          </p>
+          <h1 className="hero-elem text-reveal text-5xl font-black tracking-tight text-paper sm:text-7xl xl:text-8xl">
+            Hi, I&apos;m <span className="text-accent">Emmanuel</span>
+          </h1>
+
+          <div className="hero-elem text-reveal min-h-[140px]">
+            <TextType
+              text={texts.content}
+              typingSpeed={60}
+              pauseDuration={2000}
+              showCursor
+              cursorCharacter="_"
+              deletingSpeed={40}
+              cursorBlinkDuration={0.5}
+              className={texts.style}
+            />
+          </div>
+
+          <div className="hero-elem text-reveal flex flex-wrap justify-center gap-4 pt-4 lg:justify-start">
+            <a
+              href="#projects"
+              onMouseEnter={(event) => handleHover(event.currentTarget, 1.02)}
+              onMouseLeave={(event) => handleHoverOut(event.currentTarget)}
+              className="inline-flex items-center gap-2 border border-accent bg-accent px-7 py-3.5 text-sm font-bold text-ink transition-colors hover:bg-sand"
+            >
+              View Work <span aria-hidden="true">-&gt;</span>
+            </a>
+            <a
+              href="#contact"
+              onMouseEnter={(event) => handleHover(event.currentTarget, 1.02)}
+              onMouseLeave={(event) => handleHoverOut(event.currentTarget)}
+              className="border border-border/70 bg-ink px-7 py-3.5 text-sm font-bold text-paper transition-colors hover:border-accent hover:text-accent"
+            >
+              Contact Me
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );

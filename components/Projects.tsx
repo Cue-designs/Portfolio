@@ -1,7 +1,14 @@
+"use client";
+
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ExternalLink } from "lucide-react";
 import Blog from "../public/Blog.png";
 import devbyte from "../public/devbyte.png";
 import commerce from "../public/commerce.png";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
@@ -22,32 +29,65 @@ const projects = [
 ];
 
 export default function Projects() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useLayoutEffect(() => {
+    const context = gsap.context(() => {
+      gsap.from(".feature-card", {
+        y: 30,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          once: true,
+        },
+      });
+      gsap.from(".text-reveal", {
+        y: 20,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.08,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          once: true,
+        },
+      });
+    }, sectionRef);
+
+    return () => context.revert();
+  }, []);
+
   return (
-    <section id="projects" className="space-y-12">
-      <h2 className="text-5xl font-bold text-center bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+    <section ref={sectionRef} id="projects" className="space-y-12">
+      <h2 className="text-reveal text-center text-5xl font-bold text-accent">
         Projects
       </h2>
       <div className="grid md:grid-cols-2 gap-16">
         {projects.map((project) => (
           <article
             key={project.name}
-            className="bg-gray-900/50 p-8 rounded-3xl shadow-2xl border border-gray-800/50 grid grid-cols-1 md:grid-cols-2 gap-6 items-center"
+            className="feature-card card-motion grid grid-cols-1 items-center gap-6 border border-border/40 bg-surface p-8 shadow-2xl md:grid-cols-2"
           >
             <img
               src={project.image.src}
               alt={project.name}
-              className="w-full h-64 object-cover rounded-2xl shadow-xl"
+              className="h-64 w-full border border-border/30 object-cover shadow-xl"
             />
             <div className="space-y-4">
-              <h3 className="text-3xl font-semibold text-cyan-400">
+              <h3 className="text-reveal text-3xl font-semibold text-accent">
                 {project.name}
               </h3>
-              <p className="text-gray-300">{project.desc}</p>
+              <p className="text-reveal text-paper">{project.desc}</p>
               <a
                 href="https://github.com/Cue-designs"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
+                className="text-reveal inline-flex items-center gap-2 text-accent transition-colors hover:text-sand"
               >
                 View Project <ExternalLink size={18} />
               </a>

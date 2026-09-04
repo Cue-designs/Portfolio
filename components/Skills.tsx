@@ -1,3 +1,5 @@
+"use client";
+
 import {
   SiReact,
   SiTailwindcss,
@@ -10,6 +12,11 @@ import {
   SiSupabase,
 } from "react-icons/si";
 import LogoLoop from "./LogoLoop";
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 const techLogos = [
   { node: <SiReact />, title: "React", href: "https://react.dev" },
   { node: <SiNextdotjs />, title: "Next.js", href: "https://nextjs.org" },
@@ -45,6 +52,7 @@ const techLogos = [
     href: "https://w3schools.com",
   },
 ];
+
 const skills = [
   {
     title: "Frontend Development",
@@ -61,37 +69,64 @@ const skills = [
 ];
 
 export default function Skills() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useLayoutEffect(() => {
+    const context = gsap.context(() => {
+      gsap.from(".feature-card", {
+        y: 30,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          once: true,
+        },
+      });
+      gsap.from(".text-reveal", {
+        y: 20,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.08,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          once: true,
+        },
+      });
+    }, sectionRef);
+
+    return () => context.revert();
+  }, []);
+
   return (
-    <section
-      id="skills"
-      className="space-y-12"
-      style={{ height: "200px", position: "relative", overflow: "hidden" }}
-    >
-      <h2 className="text-5xl font-bold text-center bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+    <section ref={sectionRef} id="skills" className="space-y-12">
+      <h2 className="text-reveal text-center text-5xl font-bold text-accent">
         Skills & Tech Stack
       </h2>
       <LogoLoop
         logos={techLogos}
         speed={100}
         direction="left"
-        logoHeight={70}
+        logoHeight={40}
         gap={40}
         hoverSpeed={0}
         scaleOnHover
-        fadeOut
-        fadeOutColor="transparent"
         ariaLabel="Technology partners"
       />
       <div className="grid md:grid-cols-3 gap-8">
         {skills.map((skill) => (
           <div
             key={skill.title}
-            className="bg-gray-900/50 p-8 rounded-3xl shadow-xl border border-gray-800/50"
+            className="feature-card card-motion border border-border/40 bg-surface p-8 shadow-xl"
           >
-            <h3 className="text-2xl font-semibold mb-4 text-cyan-400">
+            <h3 className="text-reveal mb-4 text-2xl font-semibold text-accent">
               {skill.title}
             </h3>
-            <p className="text-gray-300">{skill.desc}</p>
+            <p className="text-reveal text-paper">{skill.desc}</p>
           </div>
         ))}
       </div>

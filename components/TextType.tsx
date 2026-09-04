@@ -96,7 +96,9 @@ const TextType = ({
   }, [startOnVisible]);
 
   useEffect(() => {
-    if (showCursor && cursorRef.current) {
+    if (!showCursor || !cursorRef.current) return;
+
+    const context = gsap.context(() => {
       gsap.set(cursorRef.current, { opacity: 1 });
       gsap.to(cursorRef.current, {
         opacity: 0,
@@ -105,7 +107,9 @@ const TextType = ({
         yoyo: true,
         ease: "power2.inOut",
       });
-    }
+    }, cursorRef);
+
+    return () => context.revert();
   }, [showCursor, cursorBlinkDuration]);
 
   useEffect(() => {

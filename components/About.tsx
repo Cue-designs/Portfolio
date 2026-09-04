@@ -1,4 +1,11 @@
+"use client";
+
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import imageweb from "../public/imageweb.jpg";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const education = [
   "Bachelor's Degree in Computer Science from I-fatoss University, graduated with honors.",
@@ -17,12 +24,14 @@ const insights = [
 
 function InfoCard({ title, items }: { title: string; items: string[] }) {
   return (
-    <div className="bg-gray-900/50 p-6 rounded-2xl shadow-2xl border border-gray-800/50">
-      <h3 className="text-2xl font-semibold mb-4 text-cyan-400">{title}</h3>
-      <ul className="list-none space-y-3 text-gray-400">
+    <div className="feature-card card-motion border border-border/40 bg-ink p-6 shadow-xl">
+      <h3 className="text-reveal mb-4 text-2xl font-semibold text-accent">
+        {title}
+      </h3>
+      <ul className="list-none space-y-3 text-muted">
         {items.map((item) => (
-          <li key={item} className="flex items-start gap-2">
-            <span className="text-blue-400">•</span>
+          <li key={item} className="text-reveal flex items-start gap-2">
+            <span className="text-accent">•</span>
             {item}
           </li>
         ))}
@@ -32,14 +41,49 @@ function InfoCard({ title, items }: { title: string; items: string[] }) {
 }
 
 export default function About() {
-  return (
-    <section id="about" className="grid md:grid-cols-2 gap-16 items-center">
-      <div className="space-y-8">
-        <h2 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-          About Me
-        </h2>
+  const sectionRef = useRef<HTMLElement>(null);
 
-        <p className="text-lg text-gray-300 leading-loose">
+  useLayoutEffect(() => {
+    const context = gsap.context(() => {
+      gsap.from(".feature-card", {
+        y: 30,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          once: true,
+        },
+      });
+      gsap.from(".text-reveal", {
+        y: 20,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.08,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          once: true,
+        },
+      });
+    }, sectionRef);
+
+    return () => context.revert();
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      id="about"
+      className="grid items-center gap-16 md:grid-cols-2"
+    >
+      <div className="space-y-8">
+        <h2 className="text-reveal text-5xl font-bold text-accent">About Me</h2>
+
+        <p className="text-reveal text-lg leading-loose text-paper">
           As a passionate Frontend Developer, I specialize in building dynamic
           and responsive web applications. With a strong background in computer
           science, I excel in translating complex requirements into intuitive
@@ -53,7 +97,7 @@ export default function About() {
         <img
           src={imageweb.src}
           alt="Futuristic abstract"
-          className="w-full h-full object-cover rounded-3xl opacity-50 shadow-2xl"
+          className="h-full w-full border border-border/40 object-cover opacity-70 shadow-2xl"
         />
       </div>
     </section>
