@@ -7,45 +7,19 @@ import imageweb from "../public/imageweb.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const education = [
-  "Bachelor's Degree in Computer Science from I-fatoss University, graduated with honors.",
-  "2+ years of professional experience in frontend development, including freelance projects.",
-  "Contributed to open-source repositories on GitHub.",
-  "Experience in agile environments, collaborating with cross-functional teams.",
-];
-
-const insights = [
-  "Deep knowledge of React ecosystem: Hooks, Context API, and also state management.",
-  "Proficient in performance profiling using Chrome DevTools.",
-  "Understanding of web accessibility and SEO best practices.",
-  "Skilled in unit/integration testing with React Testing Library.",
-  "Familiar with CI/CD pipelines using GitHub Actions and deployment on Vercel/Netlify.",
-];
-
-function InfoCard({ title, items }: { title: string; items: string[] }) {
-  return (
-    <div className="feature-card card-motion border border-border/40 bg-ink p-6 shadow-xl">
-      <h3 className="text-reveal mb-4 text-2xl font-semibold text-accent">
-        {title}
-      </h3>
-      <ul className="list-none space-y-3 text-muted">
-        {items.map((item) => (
-          <li key={item} className="text-reveal flex items-start gap-2">
-            <span className="text-accent">•</span>
-            {item}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
+const skillGroups = {
+  Languages: ["JavaScript", "TypeScript", "Python"],
+  Frameworks: ["React", "Next.js", "Tailwind CSS"],
+  "CMS & DB": ["Supabase", "WordPress", "PostgreSQL"],
+  Tooling: ["Git", "Figma", "Vercel"],
+};
 
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useLayoutEffect(() => {
     const context = gsap.context(() => {
-      gsap.from(".feature-card", {
+      gsap.from("[data-about-card]", {
         y: 30,
         opacity: 0,
         duration: 0.7,
@@ -57,7 +31,7 @@ export default function About() {
           once: true,
         },
       });
-      gsap.from(".text-reveal", {
+      gsap.from("[data-about-reveal]", {
         y: 20,
         opacity: 0,
         duration: 0.6,
@@ -78,27 +52,82 @@ export default function About() {
     <section
       ref={sectionRef}
       id="about"
-      className="grid items-center gap-16 md:grid-cols-2"
+      className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]"
     >
-      <div className="space-y-8">
-        <h2 className="text-reveal text-5xl font-bold text-accent">About Me</h2>
+      <div className="space-y-6">
+        <p className="section-kicker">About me</p>
+        <h2
+          data-about-reveal
+          className="font-display text-4xl font-bold text-paper sm:text-5xl"
+        >
+          A frontend developer with a product mindset.
+        </h2>
 
-        <p className="text-reveal text-lg leading-loose text-paper">
-          As a passionate Frontend Developer, I specialize in building dynamic
-          and responsive web applications. With a strong background in computer
-          science, I excel in translating complex requirements into intuitive
-          user interfaces. My approach emphasizes performance optimization,
-          accessibility, and cross-browser compatibility.
+        <p data-about-reveal className="text-lg leading-8 text-muted">
+          I care about the part between a rough idea and a delightful product:
+          the structure, the small interactions, the readable code, and the
+          moment everything starts to feel inevitable.
         </p>
-        <InfoCard title="Education & Experience" items={education} />
-        <InfoCard title="Interview-Ready Insights" items={insights} />
+        <div data-about-card className="glass-surface rounded-2xl p-6">
+          <p className="text-sm leading-7 text-paper/80">
+            Currently focused on frontend engineering, scalable UI systems, and
+            collaborative teams where craft and momentum can coexist.
+          </p>
+          <div className="mt-6 grid grid-cols-2 gap-4 border-t border-border/20 pt-5 sm:grid-cols-4">
+            <div>
+              <p className="font-display text-2xl font-bold text-accent">2+</p>
+              <p className="mt-1 text-xs text-muted">Years building</p>
+            </div>
+            <div>
+              <p className="font-display text-2xl font-bold text-accent">20+</p>
+              <p className="mt-1 text-xs text-muted">Projects shipped</p>
+            </div>
+            <div>
+              <p className="font-display text-2xl font-bold text-accent">
+                24/7
+              </p>
+              <p className="mt-1 text-xs text-muted">Curiosity</p>
+            </div>
+            <div>
+              <p className="font-display text-2xl font-bold text-accent">NG</p>
+              <p className="mt-1 text-xs text-muted">Based in Lagos</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="hidden md:block relative">
-        <img
-          src={imageweb.src}
-          alt="Futuristic abstract"
-          className="h-full w-full rounded-2xl border border-border/40 object-cover opacity-70 shadow-2xl"
-        />
+      <div className="space-y-5">
+        <div className="relative hidden aspect-[5/4] overflow-hidden rounded-3xl border border-border/20 md:block">
+          <img
+            src={imageweb.src}
+            alt="Futuristic abstract"
+            className="h-full w-full object-cover opacity-70"
+          />
+        </div>
+        <div data-about-card className="glass-surface rounded-2xl p-6">
+          <p className="section-kicker">Tech stack matrix</p>
+          <div className="mt-5 space-y-5">
+            {Object.entries(skillGroups).map(([group, items]) => (
+              <div
+                key={group}
+                className="grid gap-3 sm:grid-cols-[7rem_1fr] sm:items-center"
+              >
+                <p className="text-xs font-bold uppercase tracking-[0.14em] text-muted">
+                  {group}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {items.map((item) => (
+                    <span
+                      key={item}
+                      className="rounded-full border border-border/30 px-3 py-1.5 text-xs font-semibold text-paper/80"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

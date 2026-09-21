@@ -122,7 +122,7 @@ export default function Skills() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="skills" className="space-y-12">
+    <section ref={sectionRef} id="skills" className="space-y-8">
       <h2 className="text-reveal text-center text-5xl font-bold text-accent">
         Skills & Tech Stack
       </h2>

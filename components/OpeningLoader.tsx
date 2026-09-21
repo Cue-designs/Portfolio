@@ -81,7 +81,7 @@ export default function OpeningLoader() {
             </span>
           </span>
           <span className="overflow-hidden text-indigo-400">
-            <span data-loader-line className="font-alex-brush block mr-4">
+            <span data-loader-line className="font-alex-brush block">
               dev
             </span>
           </span>

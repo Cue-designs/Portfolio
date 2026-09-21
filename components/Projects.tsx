@@ -3,7 +3,7 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ExternalLink } from "lucide-react";
+import { ArrowUpRight, Github } from "lucide-react";
 import Blog from "../public/Blog.png";
 import devbyte from "../public/devbyte.png";
 import commerce from "../public/commerce.png";
@@ -13,18 +13,21 @@ gsap.registerPlugin(ScrollTrigger);
 const projects = [
   {
     name: "Full Stack Blog App",
-    desc: "A feature-rich blog platform with user authentication, real-time comments, and admin dashboard. Integrated frontend with Node.js/Express backend, using MongoDB for data persistence. Demonstrates API consumption, error handling, and secure authentication flows.",
+    desc: "A publishing platform with authentication, comments, and an admin workflow designed around a clear reading experience.",
     image: Blog,
+    tags: ["React", "Node.js", "MongoDB"],
   },
   {
     name: "Dev Byte Community Project",
-    desc: "A feature-rich blog platform made by the community for the community. This project was a collaborative effort where I contributed to the frontend development using React and Tailwind CSS. The project serves as a testament to my commitment to open-source contributions and community-driven development.",
+    desc: "A community-built platform where I shaped responsive frontend flows and helped create a more useful open-source experience.",
     image: devbyte,
+    tags: ["React", "Tailwind", "Community"],
   },
   {
     name: "Responsive E-Commerce Site",
-    desc: "A modern e-commerce platform with product catalogs. This was my first project using HTML and CSS. Although it lacks interactivity, it showcases my early passion for web design and development.",
+    desc: "An early ecommerce build that established my love for responsive layouts, visual hierarchy, and the details of a product page.",
     image: commerce,
+    tags: ["HTML", "CSS", "Responsive"],
   },
 ];
 
@@ -33,7 +36,7 @@ export default function Projects() {
 
   useLayoutEffect(() => {
     const context = gsap.context(() => {
-      gsap.from(".feature-card", {
+      gsap.from("[data-project-card]", {
         y: 30,
         opacity: 0,
         duration: 0.7,
@@ -45,7 +48,7 @@ export default function Projects() {
           once: true,
         },
       });
-      gsap.from(".text-reveal", {
+      gsap.from("[data-project-reveal]", {
         y: 20,
         opacity: 0,
         duration: 0.6,
@@ -63,33 +66,57 @@ export default function Projects() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="projects" className="space-y-12">
-      <h2 className="text-reveal text-center text-5xl font-bold text-accent">
-        Projects
-      </h2>
-      <div className="grid md:grid-cols-2 gap-16">
+    <section ref={sectionRef} id="projects" className="space-y-8">
+      <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+        <div className="space-y-4">
+          <p className="section-kicker">Selected work</p>
+          <h2 className="font-display text-4xl font-bold text-paper sm:text-5xl">
+            Things I&apos;ve made useful.
+          </h2>
+        </div>
+        <a
+          href="https://github.com/Cue-designs"
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex w-fit items-center gap-2 rounded-full border border-border/40 px-5 py-3 text-sm font-semibold text-paper transition hover:border-accent hover:text-accent"
+        >
+          <Github size={16} /> GitHub profile
+        </a>
+      </div>
+      <div className="grid gap-6 lg:grid-cols-3">
         {projects.map((project) => (
           <article
             key={project.name}
-            className="feature-card card-motion grid grid-cols-1 items-center gap-6 border border-border/40 bg-surface p-8 shadow-2xl md:grid-cols-2"
+            data-project-card
+            className="card-motion glass-surface group overflow-hidden rounded-2xl"
           >
             <img
               src={project.image.src}
               alt={project.name}
-              className="h-64 w-full rounded-xl border border-border/30 object-cover shadow-xl"
+              className="h-56 w-full object-cover opacity-80 transition duration-500 group-hover:scale-105 group-hover:opacity-100"
             />
-            <div className="space-y-4">
-              <h3 className="text-reveal text-3xl font-semibold text-accent">
+            <div data-project-reveal className="space-y-4 p-6">
+              <div className="flex flex-wrap gap-2">
+                {project.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full border border-border/30 px-3 py-1 text-[11px] font-semibold text-muted"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <h3 className="font-display text-2xl font-semibold text-paper">
                 {project.name}
               </h3>
-              <p className="text-reveal text-paper">{project.desc}</p>
+              <p className="text-sm leading-7 text-muted">{project.desc}</p>
               <a
                 href="https://github.com/Cue-designs"
                 target="_blank"
                 rel="noreferrer"
-                className="text-reveal inline-flex items-center gap-2 rounded-full border border-border/40 px-4 py-2 text-sm font-semibold text-accent transition-colors hover:border-accent hover:text-sand"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-accent transition-transform group-hover:translate-x-1"
               >
-                View Project <ExternalLink size={18} />
+                Explore <ArrowUpRight size={17} />
               </a>
             </div>
           </article>

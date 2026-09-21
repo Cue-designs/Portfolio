@@ -6,6 +6,8 @@ import Hero from "@/components/Hero";
 import OpeningLoader from "@/components/OpeningLoader";
 import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
+import Services from "@/components/Services";
+import Experience from "@/components/Experience";
 
 export default function HomePage() {
   return (
@@ -15,10 +17,12 @@ export default function HomePage() {
     >
       <OpeningLoader />
       <Header />
-      <main className="mx-auto max-w-7xl space-y-32 px-6 py-16 pt-24">
+      <main className="mx-auto max-w-7xl space-y-20 px-6 py-10 pt-24 lg:space-y-24">
         <Hero />
         <About />
         <Skills />
+        <Services />
+        <Experience />
         <Projects />
         <Contact />
       </main>
