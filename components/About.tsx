@@ -3,7 +3,7 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import imageweb from "../public/imageweb.jpg";
+import imageweb from "../public/imageweb.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -52,9 +52,9 @@ export default function About() {
     <section
       ref={sectionRef}
       id="about"
-      className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]"
+      className="grid items-center lg: items-start gap-10 lg:grid-cols-[0.9fr_1.1fr]"
     >
-      <div className="space-y-6">
+      <div className="space-y-6 ">
         <p className="section-kicker">About me</p>
         <h2
           data-about-reveal
@@ -100,7 +100,7 @@ export default function About() {
           <img
             src={imageweb.src}
             alt="Futuristic abstract"
-            className="h-full w-full object-cover opacity-70"
+            className="h-full w-full object-cover  object-right opacity-70"
           />
         </div>
         <div data-about-card className="glass-surface rounded-2xl p-6">
