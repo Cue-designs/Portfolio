@@ -61,7 +61,7 @@ export default function Hero() {
                 href="#projects"
                 onMouseEnter={(event) => handleHover(event.currentTarget, 1.02)}
                 onMouseLeave={(event) => handleHoverOut(event.currentTarget)}
-                className="inline-flex items-center gap-2 rounded-full border border-accent bg-accent px-6 py-3.5 text-sm font-bold text-ink transition-colors hover:bg-sand active:scale-[.98]"
+                className="inline-flex items-center gap-2 rounded-full border border-accent bg-accent px-6 py-3.5 text-sm font-bold text-ink transition-colors hover:bg-sand hover:text-amber-900 active:scale-[.98]"
               >
                 Say Hello <ArrowUpRight size={17} />
               </a>
@@ -69,7 +69,7 @@ export default function Hero() {
                 href="#contact"
                 onMouseEnter={(event) => handleHover(event.currentTarget, 1.02)}
                 onMouseLeave={(event) => handleHoverOut(event.currentTarget)}
-                className="rounded-full border border-border/50 bg-ink/40 px-6 py-3.5 text-sm font-bold text-paper transition-colors hover:border-accent hover:text-accent active:scale-[.98]"
+                className="rounded-full border border-border/50 bg-ink/40 px-6 py-3.5 text-sm font-bold text-ink transition-colors hover:bg-sand hover:text-amber-900 active:scale-[.98]"
               >
                 View Projects
               </a>
@@ -81,7 +81,7 @@ export default function Hero() {
             <img
               src="/profile.png"
               alt="Emmanuel Cajetan"
-              className="h-full w-full rounded-2xl object-cover opacity-85"
+              className="h-full w-full rounded-2xl object-cover object-top opacity-85"
             />
             <div className="absolute inset-x-6 bottom-6 rounded-2xl border border-paper/15 bg-ink/70 p-4 backdrop-blur-md sm:inset-x-8 sm:bottom-8">
               <p className="font-display text-lg font-semibold text-paper sm:text-xl">
@@ -101,7 +101,7 @@ export default function Hero() {
           ].map((chip) => (
             <span
               key={chip.label}
-              className="inline-flex max-w-full items-center gap-2 rounded-full border border-border/30 bg-ink/30 px-4 py-2 text-xs font-semibold text-muted"
+              className="inline-flex max-w-full items-center gap-2 rounded-full border border-border/30 bg-ink/30 px-4 py-2 text-xs font-semibold text-muted transition hover:animate-bounce"
             >
               {chip.icon}
               <span className="truncate">{chip.label}</span>

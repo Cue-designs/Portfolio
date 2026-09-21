@@ -28,7 +28,7 @@ export default function Header() {
 
   return (
     <nav className="fixed left-0 right-0 top-0 z-50 px-4 pt-4 sm:px-6">
-      <div className="glass-surface mx-auto flex max-w-7xl items-center justify-between rounded-full px-5 py-3">
+      <div className="glass-surface mx-auto flex max-w-7xl items-center justify-between rounded-full px-5 py-6">
         <a href="#home" className="font-display text-xl font-bold text-paper">
           Cue <span className="text-accent">dev</span>
         </a>
