@@ -76,7 +76,7 @@ export default function Projects() {
             <img
               src={project.image.src}
               alt={project.name}
-              className="h-64 w-full border border-border/30 object-cover shadow-xl"
+              className="h-64 w-full rounded-xl border border-border/30 object-cover shadow-xl"
             />
             <div className="space-y-4">
               <h3 className="text-reveal text-3xl font-semibold text-accent">
@@ -87,7 +87,7 @@ export default function Projects() {
                 href="https://github.com/Cue-designs"
                 target="_blank"
                 rel="noreferrer"
-                className="text-reveal inline-flex items-center gap-2 text-accent transition-colors hover:text-sand"
+                className="text-reveal inline-flex items-center gap-2 rounded-full border border-border/40 px-4 py-2 text-sm font-semibold text-accent transition-colors hover:border-accent hover:text-sand"
               >
                 View Project <ExternalLink size={18} />
               </a>

@@ -52,7 +52,7 @@ export default function Header() {
             isMenuOpen ? "Close navigation menu" : "Open navigation menu"
           }
           onClick={() => setIsMenuOpen((isOpen) => !isOpen)}
-          className="inline-flex h-11 w-11 items-center justify-center border border-border/70 bg-ink text-paper transition hover:border-accent hover:text-accent lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border/70 bg-ink text-paper transition hover:border-accent hover:text-accent lg:hidden"
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>

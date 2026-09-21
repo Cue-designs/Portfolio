@@ -73,7 +73,12 @@ export default function Skills() {
 
   useLayoutEffect(() => {
     const context = gsap.context(() => {
-      gsap.from(".feature-card", {
+      const skillCards = gsap.utils.toArray<HTMLElement>(".skill-card");
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+
+      gsap.from(skillCards, {
         y: 30,
         opacity: 0,
         duration: 0.7,
@@ -83,6 +88,20 @@ export default function Skills() {
           trigger: sectionRef.current,
           start: "top 80%",
           once: true,
+        },
+        onComplete: () => {
+          if (prefersReducedMotion) return;
+
+          skillCards.forEach((card, index) => {
+            gsap.to(card, {
+              y: -10,
+              duration: 0.8,
+              delay: index * 0.18,
+              repeat: -1,
+              yoyo: true,
+              ease: "power1.inOut",
+            });
+          });
         },
       });
       gsap.from(".text-reveal", {
@@ -121,7 +140,7 @@ export default function Skills() {
         {skills.map((skill) => (
           <div
             key={skill.title}
-            className="feature-card card-motion border border-border/40 bg-surface p-8 shadow-xl"
+            className="skill-card feature-card card-motion border border-border/40 bg-surface p-8 shadow-xl"
           >
             <h3 className="text-reveal mb-4 text-2xl font-semibold text-accent">
               {skill.title}

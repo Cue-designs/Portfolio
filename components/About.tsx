@@ -97,7 +97,7 @@ export default function About() {
         <img
           src={imageweb.src}
           alt="Futuristic abstract"
-          className="h-full w-full border border-border/40 object-cover opacity-70 shadow-2xl"
+          className="h-full w-full rounded-2xl border border-border/40 object-cover opacity-70 shadow-2xl"
         />
       </div>
     </section>

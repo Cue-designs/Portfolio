@@ -40,7 +40,7 @@ export default function Footer() {
             href="https://github.com/Cue-designs"
             target="_blank"
             rel="noreferrer"
-            className="footer-link transition-colors hover:text-accent"
+            className="footer-link rounded-full p-2 transition-colors hover:bg-accent/10 hover:text-accent"
           >
             <Github size={28} />
           </a>
@@ -48,7 +48,7 @@ export default function Footer() {
             href="https://www.linkedin.com/in/emmanuel-cajetan-81a73a308"
             target="_blank"
             rel="noreferrer"
-            className="footer-link transition-colors hover:text-accent"
+            className="footer-link rounded-full p-2 transition-colors hover:bg-accent/10 hover:text-accent"
           >
             <Linkedin size={28} />
           </a>
@@ -56,7 +56,7 @@ export default function Footer() {
             href="https://x.com/EmmanuelCa64221"
             target="_blank"
             rel="noreferrer"
-            className="footer-link transition-colors hover:text-accent"
+            className="footer-link rounded-full p-2 transition-colors hover:bg-accent/10 hover:text-accent"
           >
             <span className="text-2xl" aria-label="X">
               𝕏
@@ -64,7 +64,7 @@ export default function Footer() {
           </a>
           <a
             href="mailto:cajemma122@email.com"
-            className="footer-link transition-colors hover:text-accent"
+            className="footer-link rounded-full p-2 transition-colors hover:bg-accent/10 hover:text-accent"
           >
             <Mail size={28} />
           </a>
