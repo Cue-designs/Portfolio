@@ -39,7 +39,7 @@ export default function RootLayout({
         className={`${alexBrush.variable} ${bricolageGrotesque.variable} ${plusJakartaSans.variable}`}
       >
         {children}
-        <Toaster position="top-right" richColors />
+        <Toaster position="top-center" richColors />
       </body>
     </html>
   );
