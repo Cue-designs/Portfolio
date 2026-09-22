@@ -5,6 +5,7 @@ import {
   Plus_Jakarta_Sans,
 } from "next/font/google";
 import type { Metadata } from "next";
+import { Toaster } from "sonner";
 
 const alexBrush = Alex_Brush({
   subsets: ["latin"],
@@ -38,6 +39,7 @@ export default function RootLayout({
         className={`${alexBrush.variable} ${bricolageGrotesque.variable} ${plusJakartaSans.variable}`}
       >
         {children}
+        <Toaster position="top-right" richColors />
       </body>
     </html>
   );

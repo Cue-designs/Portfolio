@@ -4,6 +4,7 @@ import { useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Mail, MapPin, Phone, Send, Loader2 } from "lucide-react";
+import { toast } from "sonner";
 import { submitContactForm } from "@/src/app/actions";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -11,10 +12,6 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
   const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState<{
-    type: "success" | "error";
-    message: string;
-  } | null>(null);
 
   useLayoutEffect(() => {
     const context = gsap.context(() => {
@@ -38,7 +35,6 @@ export default function Contact() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
-    setStatus(null);
 
     const formData = new FormData(e.currentTarget);
     const result = await submitContactForm(formData);
@@ -46,16 +42,10 @@ export default function Contact() {
     setLoading(false);
 
     if (result.success) {
-      setStatus({
-        type: "success",
-        message: "Message sent successfully! I'll get back to you soon.",
-      });
+      toast.success("Message sent successfully! I'll get back to you soon.");
       (e.target as HTMLFormElement).reset();
     } else {
-      setStatus({
-        type: "error",
-        message: result.error || "Something went wrong. Please try again.",
-      });
+      toast.error(result.error || "Something went wrong. Please try again.");
     }
   }
 
@@ -120,18 +110,6 @@ export default function Contact() {
           onSubmit={handleSubmit}
           className="glass-surface grid gap-4 rounded-2xl p-6 sm:grid-cols-2"
         >
-          {status && (
-            <div
-              className={`sm:col-span-2 rounded-xl p-4 text-sm font-medium ${
-                status.type === "success"
-                  ? "bg-emerald-950/60 text-emerald-300 border border-emerald-800/60"
-                  : "bg-red-950/60 text-red-300 border border-red-800/60"
-              }`}
-            >
-              {status.message}
-            </div>
-          )}
-
           <label className="space-y-2 text-sm font-semibold text-paper">
             Name
             <input
@@ -160,16 +138,6 @@ export default function Contact() {
               required
               className="mt-1 w-full rounded-xl border border-border/30 bg-ink/40 px-4 py-3 font-normal text-paper outline-none transition focus:border-accent"
               placeholder="A new project"
-            />
-          </label>
-
-          <label className="space-y-2 text-sm font-semibold text-paper">
-            Phone
-            <input
-              name="phone"
-              type="tel"
-              className="mt-1 w-full rounded-xl border border-border/30 bg-ink/40 px-4 py-3 font-normal text-paper outline-none transition focus:border-accent"
-              placeholder="+234..."
             />
           </label>
 
