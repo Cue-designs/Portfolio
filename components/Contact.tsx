@@ -1,14 +1,20 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowUpRight, Mail, MapPin, Phone, Send } from "lucide-react";
+import { Mail, MapPin, Phone, Send, Loader2 } from "lucide-react";
+import { submitContactForm } from "@/src/app/actions";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState<{
+    type: "success" | "error";
+    message: string;
+  } | null>(null);
 
   useLayoutEffect(() => {
     const context = gsap.context(() => {
@@ -29,6 +35,30 @@ export default function Contact() {
     return () => context.revert();
   }, []);
 
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setLoading(true);
+    setStatus(null);
+
+    const formData = new FormData(e.currentTarget);
+    const result = await submitContactForm(formData);
+
+    setLoading(false);
+
+    if (result.success) {
+      setStatus({
+        type: "success",
+        message: "Message sent successfully! I'll get back to you soon.",
+      });
+      (e.target as HTMLFormElement).reset();
+    } else {
+      setStatus({
+        type: "error",
+        message: result.error || "Something went wrong. Please try again.",
+      });
+    }
+  }
+
   return (
     <section
       ref={sectionRef}
@@ -46,6 +76,7 @@ export default function Contact() {
           sharp eye for the details.
         </p>
       </div>
+
       <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
         <div data-contact-reveal className="space-y-4">
           <div className="glass-surface rounded-2xl p-6">
@@ -53,6 +84,7 @@ export default function Contact() {
             <p className="mt-5 text-sm font-semibold text-paper">Location</p>
             <p className="mt-1 text-sm text-muted">Ojo, Lagos State, Nigeria</p>
           </div>
+
           <a
             href="tel:+2347069982558"
             className="glass-surface block rounded-2xl p-6 transition hover:border-accent"
@@ -63,6 +95,7 @@ export default function Contact() {
             </p>
             <p className="mt-1 text-sm text-muted">+234 706 998 2558</p>
           </a>
+
           <a
             href="mailto:cajemma122@email.com"
             className="glass-surface block rounded-2xl p-6 transition hover:border-accent"
@@ -71,6 +104,7 @@ export default function Contact() {
             <p className="mt-5 text-sm font-semibold text-paper">Email</p>
             <p className="mt-1 text-sm text-muted">cajemma122@email.com</p>
           </a>
+
           <div className="overflow-hidden rounded-2xl border border-border/20">
             <iframe
               title="Map showing Ojo, Lagos"
@@ -80,13 +114,24 @@ export default function Contact() {
             />
           </div>
         </div>
+
         <form
           data-contact-reveal
+          onSubmit={handleSubmit}
           className="glass-surface grid gap-4 rounded-2xl p-6 sm:grid-cols-2"
-          action="mailto:cajemma122@email.com"
-          method="post"
-          encType="text/plain"
         >
+          {status && (
+            <div
+              className={`sm:col-span-2 rounded-xl p-4 text-sm font-medium ${
+                status.type === "success"
+                  ? "bg-emerald-950/60 text-emerald-300 border border-emerald-800/60"
+                  : "bg-red-950/60 text-red-300 border border-red-800/60"
+              }`}
+            >
+              {status.message}
+            </div>
+          )}
+
           <label className="space-y-2 text-sm font-semibold text-paper">
             Name
             <input
@@ -96,6 +141,7 @@ export default function Contact() {
               placeholder="Your name"
             />
           </label>
+
           <label className="space-y-2 text-sm font-semibold text-paper">
             Email
             <input
@@ -106,23 +152,27 @@ export default function Contact() {
               placeholder="you@example.com"
             />
           </label>
+
           <label className="space-y-2 text-sm font-semibold text-paper">
             Subject
             <input
               name="subject"
+              required
               className="mt-1 w-full rounded-xl border border-border/30 bg-ink/40 px-4 py-3 font-normal text-paper outline-none transition focus:border-accent"
               placeholder="A new project"
             />
           </label>
+
           <label className="space-y-2 text-sm font-semibold text-paper">
             Phone
             <input
               name="phone"
               type="tel"
               className="mt-1 w-full rounded-xl border border-border/30 bg-ink/40 px-4 py-3 font-normal text-paper outline-none transition focus:border-accent"
-              placeholder="+234"
+              placeholder="+234..."
             />
           </label>
+
           <label className="space-y-2 text-sm font-semibold text-paper sm:col-span-2">
             Message
             <textarea
@@ -133,11 +183,21 @@ export default function Contact() {
               placeholder="Tell me a little about the project..."
             />
           </label>
+
           <button
             type="submit"
-            className="inline-flex w-fit items-center gap-2 rounded-full bg-accent px-5  text-sm font-bold text-ink transition hover:bg-sand hover:text-amber-900 active:scale-[.98]"
+            disabled={loading}
+            className="inline-flex w-fit items-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-bold text-ink transition hover:bg-sand hover:text-amber-900 active:scale-[.98] disabled:opacity-50 disabled:pointer-events-none sm:col-span-2"
           >
-            <Send size={16} /> Send Message
+            {loading ? (
+              <>
+                <Loader2 size={16} className="animate-spin" /> Sending...
+              </>
+            ) : (
+              <>
+                <Send size={16} /> Send Message
+              </>
+            )}
           </button>
         </form>
       </div>
