@@ -56,15 +56,15 @@ const techLogos = [
 const skills = [
   {
     title: "Frontend Development",
-    desc: "Developing robust UIs with React and TypeScript, focusing on component reusability and state management.",
+    desc: "I develop robust UIs with React and TypeScript, focusing on component reusability and clear state management.",
   },
   {
     title: "Responsive & UI/UX Design",
-    desc: "Designing adaptive layouts using Tailwind CSS, ensuring optimal performance on all devices with modern design patterns.",
+    desc: "I design adaptive layouts with Tailwind CSS and make sure they perform well across devices.",
   },
   {
     title: "Testing & Deployment",
-    desc: "Implementing Git workflows and deployments for reliable, scalable applications.",
+    desc: "I use Git workflows and reliable deployments to help applications stay maintainable and scalable.",
   },
 ];
 
@@ -124,7 +124,7 @@ export default function Skills() {
   return (
     <section ref={sectionRef} id="skills" className="space-y-8">
       <h2 className="text-reveal text-center text-5xl font-bold text-accent">
-        Skills & Tech Stack
+        The tools I use to bring ideas to life.
       </h2>
       <LogoLoop
         logos={techLogos}

@@ -13,7 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 const projects = [
   {
     name: "Full Stack Blog App",
-    desc: "A publishing platform with authentication, comments, and an admin workflow designed around a clear reading experience.",
+    desc: "I built this publishing platform with authentication, comments, and an admin workflow around a clear reading experience.",
     image: Blog,
     tags: ["React", "Node.js", "MongoDB"],
   },
@@ -25,7 +25,7 @@ const projects = [
   },
   {
     name: "Responsive E-Commerce Site",
-    desc: "An early ecommerce build that established my love for responsive layouts, visual hierarchy, and the details of a product page.",
+    desc: "I built this early ecommerce project while developing my love for responsive layouts, visual hierarchy, and product-page details.",
     image: commerce,
     tags: ["HTML", "CSS", "Responsive"],
   },
@@ -71,7 +71,7 @@ export default function Projects() {
         <div className="space-y-4">
           <p className="section-kicker">Selected work</p>
           <h2 className="font-display text-4xl font-bold text-paper sm:text-5xl">
-            Things I&apos;ve made useful.
+            Things I&apos;ve built to be useful.
           </h2>
         </div>
         <a

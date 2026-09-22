@@ -14,7 +14,7 @@ const journey = [
     organization: "Product teams and freelance collaborations",
     type: "Professional",
     description:
-      "Building polished React and Next.js experiences, shaping reusable UI systems, and translating product ideas into accessible interfaces.",
+      "I build polished React and Next.js experiences, shape reusable UI systems, and translate product ideas into accessible interfaces.",
     tags: ["React", "Next.js", "TypeScript"],
   },
   {
@@ -23,7 +23,7 @@ const journey = [
     organization: "DevByte Community",
     type: "Community",
     description:
-      "Collaborating with developers on community projects, reviewing frontend work, and helping early-career builders turn ideas into shipped products.",
+      "I collaborate with developers on community projects, review frontend work, and help early-career builders turn ideas into shipped products.",
     tags: ["Leadership", "Code Review", "Tailwind"],
   },
   {
@@ -32,7 +32,7 @@ const journey = [
     organization: "Independent workshops",
     type: "Education",
     description:
-      "Teaching practical web development through project-based sessions covering HTML, CSS, JavaScript, Git, and responsive UI architecture.",
+      "I teach practical web development through project-based sessions covering HTML, CSS, JavaScript, Git, and responsive UI architecture.",
     tags: ["Mentorship", "JavaScript", "Workshops"],
   },
 ];
@@ -64,7 +64,7 @@ export default function Experience() {
       <div className="max-w-2xl space-y-4">
         <p className="section-kicker">Experience & journey</p>
         <h2 className="font-display text-4xl font-bold text-paper sm:text-5xl">
-          Growing through the work, one useful release at a time.
+          I&apos;m growing through the work, one useful release at a time.
         </h2>
       </div>
       <div className="relative ml-3 border-l border-border/30 pl-8 sm:ml-6 sm:pl-12">

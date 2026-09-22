@@ -38,7 +38,7 @@ export default function Contact() {
       <div data-contact-reveal className="max-w-2xl space-y-4">
         <p className="section-kicker">Contact</p>
         <h2 className="font-display text-4xl font-bold text-paper sm:text-6xl">
-          Have an idea worth building?
+          Have an idea you&apos;d like me to build?
         </h2>
         <p className="text-lg leading-8 text-muted">
           Tell me what you&apos;re working on, where it&apos;s stuck, or what
@@ -135,7 +135,7 @@ export default function Contact() {
           </label>
           <button
             type="submit"
-            className="inline-flex w-fit items-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-bold text-ink transition hover:bg-sand active:scale-[.98]"
+            className="inline-flex w-fit items-center gap-2 rounded-full bg-accent px-5  text-sm font-bold text-ink transition hover:bg-sand hover:text-amber-900 active:scale-[.98]"
           >
             <Send size={16} /> Send Message
           </button>

@@ -26,3 +26,13 @@ dist-ssr
 .next/
 out/
 node_modules/
+
+# Supabase
+.branches
+.temp
+
+# dotenvx
+.env.keys
+.env.local
+.env.*.local
+.env

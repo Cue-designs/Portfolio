@@ -60,18 +60,19 @@ export default function About() {
           data-about-reveal
           className="font-display text-4xl font-bold text-paper sm:text-5xl"
         >
-          A frontend developer with a product mindset.
+          I&apos;m a frontend developer with a product mindset.
         </h2>
 
         <p data-about-reveal className="text-lg leading-8 text-muted">
-          I care about the part between a rough idea and a delightful product:
-          the structure, the small interactions, the readable code, and the
-          moment everything starts to feel inevitable.
+          I care about the space between a rough idea and a delightful product:
+          I shape the structure, refine the small interactions, write readable
+          code, and keep working until the experience feels inevitable.
         </p>
         <div data-about-card className="glass-surface rounded-2xl p-6">
           <p className="text-sm leading-7 text-paper/80">
-            Currently focused on frontend engineering, scalable UI systems, and
-            collaborative teams where craft and momentum can coexist.
+            I&apos;m currently focused on frontend engineering, scalable UI
+            systems, and collaborative teams where craft and momentum can
+            coexist.
           </p>
           <div className="mt-6 grid grid-cols-2 gap-4 border-t border-border/20 pt-5 sm:grid-cols-4">
             <div>

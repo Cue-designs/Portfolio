@@ -40,7 +40,7 @@ export default function Footer() {
             Cue <span className="text-accent">dev</span>
           </p>
           <p className="footer-text mt-2 text-sm">
-            Building with care from Lagos, Nigeria.
+            I build with care from Lagos, Nigeria.
           </p>
         </div>
         <div className="flex items-center gap-3">

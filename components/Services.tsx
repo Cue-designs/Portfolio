@@ -12,25 +12,25 @@ const services = [
     icon: LayoutTemplate,
     title: "Frontend Engineering",
     description:
-      "Responsive, accessible interfaces with React, Next.js, TypeScript, and thoughtful component systems.",
+      "I build responsive, accessible interfaces with React, Next.js, TypeScript, and thoughtful component systems.",
   },
   {
     icon: Code2,
     title: "Full Stack Products",
     description:
-      "From the first user flow to production, I build reliable applications that feel clear and fast.",
+      "I take products from the first user flow to production, building reliable applications that feel clear and fast.",
   },
   {
     icon: Database,
     title: "CMS & Data Systems",
     description:
-      "WordPress, Supabase, and structured content experiences designed for teams that need to move quickly.",
+      "I use WordPress, Supabase, and structured content systems to help teams move quickly.",
   },
   {
     icon: Users,
     title: "Team Enablement",
     description:
-      "Clean reviews, useful documentation, and collaborative delivery that helps teams ship with confidence.",
+      "I support teams with clean reviews, useful documentation, and collaborative delivery that helps us ship with confidence.",
   },
 ];
 
@@ -61,7 +61,7 @@ export default function Services() {
       <div className="max-w-2xl space-y-4">
         <p className="section-kicker">What I do</p>
         <h2 className="font-display text-4xl font-bold text-paper sm:text-5xl">
-          Practical engineering for ambitious ideas.
+          I turn ambitious ideas into practical digital products.
         </h2>
       </div>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
